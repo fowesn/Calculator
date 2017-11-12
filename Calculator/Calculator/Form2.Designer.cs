@@ -138,7 +138,7 @@
             this.CurrentState.TabIndex = 27;
             this.CurrentState.Text = "Текущее состояние";
             this.CurrentState.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.CurrentState.Click += new System.EventHandler(this.CurrentState_Click_1);
+            this.CurrentState.Click += new System.EventHandler(this.CurrentState_Click);
             // 
             // History
             // 

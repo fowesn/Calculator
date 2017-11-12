@@ -24,9 +24,5 @@ namespace Calculator
             CSS.Show();
             this.Close();
         }
-        private void CurrentState_Click_1(object sender, EventArgs e)
-        {
-
-        }
     }
 }
