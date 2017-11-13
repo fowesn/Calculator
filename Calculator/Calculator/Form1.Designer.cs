@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem(new string[] {
             "werty"}, -1, System.Drawing.Color.Empty, System.Drawing.SystemColors.Window, new System.Drawing.Font("Century Gothic", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204))));
-            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem(new string[] {
             "sdfgn"}, -1, System.Drawing.Color.Empty, System.Drawing.Color.Empty, new System.Drawing.Font("Century Gothic", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204))));
             this.SideBarBG = new System.Windows.Forms.Label();
             this.History = new System.Windows.Forms.Label();
@@ -206,12 +206,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CurrentStateList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            listViewItem5.ToolTipText = "sredrgfhcgv";
-            listViewItem5.UseItemStyleForSubItems = false;
-            listViewItem6.UseItemStyleForSubItems = false;
+            listViewItem7.ToolTipText = "sredrgfhcgv";
+            listViewItem7.UseItemStyleForSubItems = false;
+            listViewItem8.UseItemStyleForSubItems = false;
             this.CurrentStateList.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem5,
-            listViewItem6});
+            listViewItem7,
+            listViewItem8});
             this.CurrentStateList.Location = new System.Drawing.Point(155, 75);
             this.CurrentStateList.MultiSelect = false;
             this.CurrentStateList.Name = "CurrentStateList";
@@ -243,7 +243,9 @@
             this.MaximumSize = new System.Drawing.Size(500, 10000);
             this.MinimumSize = new System.Drawing.Size(500, 550);
             this.Name = "CurrentState_Screen";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Текущее состояние счёта";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CurrentState_Screen_Closed);
             this.ResumeLayout(false);
 
         }

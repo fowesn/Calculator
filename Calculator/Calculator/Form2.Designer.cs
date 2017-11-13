@@ -192,7 +192,9 @@
             this.MaximumSize = new System.Drawing.Size(500, 10000);
             this.MinimumSize = new System.Drawing.Size(500, 550);
             this.Name = "History_Screen";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "История счёта";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.History_Screen_Closed);
             this.ResumeLayout(false);
 
         }

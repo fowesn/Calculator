@@ -26,6 +26,7 @@ namespace Calculator
         {
             History_Screen HS = new History_Screen();
             HS.Show();
+            HS.Location = this.Location;
             this.Visible = false;
         }
 
@@ -47,6 +48,11 @@ namespace Calculator
         private void CurrentStateList_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void CurrentState_Screen_Closed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

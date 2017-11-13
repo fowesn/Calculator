@@ -22,7 +22,13 @@ namespace Calculator
         {
             CurrentState_Screen CSS = new CurrentState_Screen();
             CSS.Show();
-            this.Close();
+            CSS.Location = this.Location; //чтобы окно открывалось в том же месте, где и окно, с которого совершён переход
+            this.Visible = false;
+        }
+
+        private void History_Screen_Closed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
