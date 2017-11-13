@@ -26,7 +26,8 @@ namespace Calculator
         {
             History_Screen HS = new History_Screen();
             HS.Show();
-            HS.Location = this.Location;
+            HS.Location = this.Location;  //чтобы окно открывалось в том же месте, где и окно, с которого совершён переход
+            HS.Size = this.Size; //то же для размеров
             this.Visible = false;
         }
 

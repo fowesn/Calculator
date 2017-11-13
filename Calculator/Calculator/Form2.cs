@@ -23,6 +23,7 @@ namespace Calculator
             CurrentState_Screen CSS = new CurrentState_Screen();
             CSS.Show();
             CSS.Location = this.Location; //чтобы окно открывалось в том же месте, где и окно, с которого совершён переход
+            CSS.Size = this.Size; //то же для размеров
             this.Visible = false;
         }
 
