@@ -33,7 +33,11 @@ namespace Calculator
 
         private void Planning_Click(object sender, EventArgs e)
         {
-
+            Planning_Screen PS = new Planning_Screen();
+            PS.Show();
+            PS.Location = this.Location; 
+            PS.Size = this.Size; 
+            this.Visible = false;
         }
 
         private void Add_Click(object sender, EventArgs e)

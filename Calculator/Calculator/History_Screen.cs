@@ -27,9 +27,19 @@ namespace Calculator
             this.Visible = false;
         }
 
+        private void Planning_Click(object sender, EventArgs e)
+        {
+            Planning_Screen PS = new Planning_Screen();
+            PS.Show();
+            PS.Location = this.Location;
+            PS.Size = this.Size;
+            this.Visible = false;
+        }
+
         private void History_Screen_Closed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
         }
+
     }
 }
