@@ -40,7 +40,7 @@
             this.ActiveButton = new System.Windows.Forms.Label();
             this.History = new System.Windows.Forms.Label();
             this.Planning = new System.Windows.Forms.Label();
-            this.ClearSubBar = new System.Windows.Forms.Label();
+            this.ClearBar = new System.Windows.Forms.Label();
             this.CurrentState = new System.Windows.Forms.Label();
             this.Clear = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -50,14 +50,14 @@
             this.HistoryList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.HistoryList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.HistoryList.BorderStyle = System.Windows.Forms.BorderStyle.None;
             listViewItem1.ToolTipText = "sredrgfhcgv";
             listViewItem1.UseItemStyleForSubItems = false;
             listViewItem2.UseItemStyleForSubItems = false;
             this.HistoryList.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
             listViewItem1,
             listViewItem2});
-            this.HistoryList.Location = new System.Drawing.Point(224, 75);
+            this.HistoryList.Location = new System.Drawing.Point(225, 75);
             this.HistoryList.MultiSelect = false;
             this.HistoryList.Name = "HistoryList";
             this.HistoryList.Size = new System.Drawing.Size(551, 397);
@@ -158,15 +158,15 @@
             this.Planning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.Planning.Click += new System.EventHandler(this.Planning_Click);
             // 
-            // ClearSubBar
+            // ClearBar
             // 
-            this.ClearSubBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ClearBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ClearSubBar.BackColor = System.Drawing.Color.Silver;
-            this.ClearSubBar.Location = new System.Drawing.Point(225, 27);
-            this.ClearSubBar.Name = "ClearSubBar";
-            this.ClearSubBar.Size = new System.Drawing.Size(550, 48);
-            this.ClearSubBar.TabIndex = 30;
+            this.ClearBar.BackColor = System.Drawing.Color.Silver;
+            this.ClearBar.Location = new System.Drawing.Point(225, 27);
+            this.ClearBar.Name = "ClearBar";
+            this.ClearBar.Size = new System.Drawing.Size(550, 48);
+            this.ClearBar.TabIndex = 30;
             // 
             // CurrentState
             // 
@@ -208,7 +208,7 @@
             this.ClientSize = new System.Drawing.Size(774, 471);
             this.Controls.Add(this.Clear);
             this.Controls.Add(this.CurrentState);
-            this.Controls.Add(this.ClearSubBar);
+            this.Controls.Add(this.ClearBar);
             this.Controls.Add(this.Planning);
             this.Controls.Add(this.History);
             this.Controls.Add(this.ActiveButton);
@@ -237,7 +237,7 @@
         private System.Windows.Forms.Label ActiveButton;
         private System.Windows.Forms.Label History;
         private System.Windows.Forms.Label Planning;
-        private System.Windows.Forms.Label ClearSubBar;
+        private System.Windows.Forms.Label ClearBar;
         private System.Windows.Forms.Label CurrentState;
         private System.Windows.Forms.Label Clear;
     }

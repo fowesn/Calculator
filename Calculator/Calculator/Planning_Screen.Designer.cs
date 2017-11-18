@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem(new string[] {
             "werty"}, -1, System.Drawing.Color.Empty, System.Drawing.SystemColors.Window, new System.Drawing.Font("Century Gothic", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204))));
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem(new string[] {
             "sdfgn"}, -1, System.Drawing.Color.Empty, System.Drawing.Color.Empty, new System.Drawing.Font("Century Gothic", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204))));
             this.Planning = new System.Windows.Forms.Label();
             this.History = new System.Windows.Forms.Label();
@@ -45,6 +45,9 @@
             this.Add = new System.Windows.Forms.Label();
             this.Subtract = new System.Windows.Forms.Label();
             this.Clear = new System.Windows.Forms.Label();
+            this.CalculateBar = new System.Windows.Forms.Label();
+            this.Calculate = new System.Windows.Forms.Label();
+            this.Date = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // Planning
@@ -95,17 +98,17 @@
             this.PlanningList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.PlanningList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            listViewItem3.ToolTipText = "sredrgfhcgv";
-            listViewItem3.UseItemStyleForSubItems = false;
-            listViewItem4.UseItemStyleForSubItems = false;
+            this.PlanningList.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            listViewItem7.ToolTipText = "sredrgfhcgv";
+            listViewItem7.UseItemStyleForSubItems = false;
+            listViewItem8.UseItemStyleForSubItems = false;
             this.PlanningList.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem3,
-            listViewItem4});
-            this.PlanningList.Location = new System.Drawing.Point(224, 75);
+            listViewItem7,
+            listViewItem8});
+            this.PlanningList.Location = new System.Drawing.Point(225, 75);
             this.PlanningList.MultiSelect = false;
             this.PlanningList.Name = "PlanningList";
-            this.PlanningList.Size = new System.Drawing.Size(551, 397);
+            this.PlanningList.Size = new System.Drawing.Size(551, 349);
             this.PlanningList.TabIndex = 34;
             this.PlanningList.UseCompatibleStateImageBehavior = false;
             this.PlanningList.View = System.Windows.Forms.View.List;
@@ -232,11 +235,50 @@
             this.Clear.Text = "Очистить";
             this.Clear.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // CalculateBar
+            // 
+            this.CalculateBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CalculateBar.BackColor = System.Drawing.Color.Silver;
+            this.CalculateBar.Location = new System.Drawing.Point(225, 424);
+            this.CalculateBar.Name = "CalculateBar";
+            this.CalculateBar.Size = new System.Drawing.Size(550, 48);
+            this.CalculateBar.TabIndex = 44;
+            // 
+            // Calculate
+            // 
+            this.Calculate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Calculate.BackColor = System.Drawing.Color.Gray;
+            this.Calculate.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Calculate.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.Calculate.Location = new System.Drawing.Point(612, 434);
+            this.Calculate.MaximumSize = new System.Drawing.Size(143, 30);
+            this.Calculate.MinimumSize = new System.Drawing.Size(143, 30);
+            this.Calculate.Name = "Calculate";
+            this.Calculate.Size = new System.Drawing.Size(143, 30);
+            this.Calculate.TabIndex = 45;
+            this.Calculate.Text = "Рассчитать";
+            this.Calculate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // Date
+            // 
+            this.Date.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.Date.CalendarFont = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Date.CalendarTitleBackColor = System.Drawing.SystemColors.Window;
+            this.Date.Font = new System.Drawing.Font("Century Gothic", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Date.Location = new System.Drawing.Point(243, 435);
+            this.Date.Name = "Date";
+            this.Date.Size = new System.Drawing.Size(188, 28);
+            this.Date.TabIndex = 46;
+            // 
             // Planning_Screen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(774, 471);
+            this.Controls.Add(this.Date);
+            this.Controls.Add(this.Calculate);
+            this.Controls.Add(this.CalculateBar);
             this.Controls.Add(this.Clear);
             this.Controls.Add(this.Add);
             this.Controls.Add(this.Subtract);
@@ -273,5 +315,8 @@
         private System.Windows.Forms.Label Add;
         private System.Windows.Forms.Label Subtract;
         private System.Windows.Forms.Label Clear;
+        private System.Windows.Forms.Label CalculateBar;
+        private System.Windows.Forms.Label Calculate;
+        private System.Windows.Forms.DateTimePicker Date;
     }
 }
