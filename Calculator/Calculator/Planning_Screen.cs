@@ -37,7 +37,13 @@ namespace Calculator
 
         private void PlanningList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Planning_Record_Screen PRS = new Planning_Record_Screen();
+            PRS.Show();
+            PRS.Location = this.Location;
+            PRS.Size = this.Size;
+            this.Visible = false;
 
+            //+ ...
         }
 
         private void Clear_Click(object sender, EventArgs e)
@@ -47,12 +53,26 @@ namespace Calculator
 
         private void Add_Click(object sender, EventArgs e)
         {
+            //действия 
 
+
+            Planning_Record_Screen PRS = new Planning_Record_Screen();
+            PRS.Show();
+            PRS.Location = this.Location;
+            PRS.Size = this.Size;
+            this.Visible = false;
         }
 
         private void Subtract_Click(object sender, EventArgs e)
         {
+            //действия 
 
+
+            Planning_Record_Screen PRS = new Planning_Record_Screen();
+            PRS.Show();
+            PRS.Location = this.Location;
+            PRS.Size = this.Size;
+            this.Visible = false;
         }
 
         private void Calculate_Click(object sender, EventArgs e)

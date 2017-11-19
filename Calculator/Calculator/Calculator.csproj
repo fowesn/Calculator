@@ -45,11 +45,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CurrentState_Record_Screen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CurrentState_Record_Screen.Designer.cs">
+      <DependentUpon>CurrentState_Record_Screen.cs</DependentUpon>
+    </Compile>
     <Compile Include="CurrentState_Screen.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CurrentState_Screen.Designer.cs">
       <DependentUpon>CurrentState_Screen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="History_Record_Screen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="History_Record_Screen.Designer.cs">
+      <DependentUpon>History_Record_Screen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Planning_Record_Screen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Planning_Record_Screen.Designer.cs">
+      <DependentUpon>Planning_Record_Screen.cs</DependentUpon>
     </Compile>
     <Compile Include="Planning_Screen.cs">
       <SubType>Form</SubType>
@@ -65,11 +83,20 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CurrentState_Record_Screen.resx">
+      <DependentUpon>CurrentState_Record_Screen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CurrentState_Screen.resx">
       <DependentUpon>CurrentState_Screen.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="History_Record_Screen.resx">
+      <DependentUpon>History_Record_Screen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="History_Screen.resx">
       <DependentUpon>History_Screen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Planning_Record_Screen.resx">
+      <DependentUpon>Planning_Record_Screen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Planning_Screen.resx">
       <DependentUpon>Planning_Screen.cs</DependentUpon>

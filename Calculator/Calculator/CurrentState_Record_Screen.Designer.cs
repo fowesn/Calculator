@@ -59,6 +59,7 @@
             this.Save.TabIndex = 25;
             this.Save.Text = "Сохранить";
             this.Save.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Save.Click += new System.EventHandler(this.Save_Click);
             // 
             // Cancel
             // 
@@ -72,6 +73,7 @@
             this.Cancel.TabIndex = 24;
             this.Cancel.Text = "Отменить";
             this.Cancel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Cancel.Click += new System.EventHandler(this.Cancel_Click);
             // 
             // Today
             // 
@@ -161,6 +163,7 @@
             this.Planning.TabIndex = 17;
             this.Planning.Text = "Планирование";
             this.Planning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Planning.Click += new System.EventHandler(this.Planning_Click);
             // 
             // History
             // 
@@ -178,6 +181,7 @@
             this.History.TabIndex = 16;
             this.History.Text = "История";
             this.History.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.History.Click += new System.EventHandler(this.History_Click);
             // 
             // SideBarBG
             // 
@@ -291,6 +295,7 @@
             this.Text = "Добавить новый пункт";
             this.ResumeLayout(false);
             this.PerformLayout();
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CurrentState_Record_Screen_Closed);
 
         }
 

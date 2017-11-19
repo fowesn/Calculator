@@ -38,7 +38,11 @@ namespace Calculator
 
         private void HistoryList_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            History_Record_Screen HRS = new History_Record_Screen();
+            HRS.Show();
+            HRS.Location = this.Location;
+            HRS.Size = this.Size;
+            this.Visible = false;
         }
 
         private void Clear_Click(object sender, EventArgs e)

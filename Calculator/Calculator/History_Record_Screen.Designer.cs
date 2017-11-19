@@ -60,6 +60,7 @@
             this.Cancel.TabIndex = 35;
             this.Cancel.Text = "Закрыть";
             this.Cancel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Cancel.Click += new System.EventHandler(this.Cancel_Click);
             // 
             // Today
             // 
@@ -91,6 +92,7 @@
             this.CurrentState.TabIndex = 33;
             this.CurrentState.Text = "Текущее состояние";
             this.CurrentState.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.CurrentState.Click += new System.EventHandler(this.CurrentState_Click);
             // 
             // AddSubBar
             // 
@@ -149,6 +151,7 @@
             this.Planning.TabIndex = 28;
             this.Planning.Text = "Планирование";
             this.Planning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Planning.Click += new System.EventHandler(this.Planning_Click);
             // 
             // History
             // 
@@ -305,8 +308,9 @@
             this.Controls.Add(this.SideBarBG);
             this.MinimumSize = new System.Drawing.Size(690, 500);
             this.Name = "History_Record_Screen";
-            this.Text = "History_Record_Screen";
+            this.Text = "Пункт истории счёта";
             this.ResumeLayout(false);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.History_Record_Screen_Closed);
 
         }
 

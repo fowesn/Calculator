@@ -17,11 +17,6 @@ namespace Calculator
             InitializeComponent();
         }
 
-        private void CurrentState_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void History_Click(object sender, EventArgs e)
         {
             History_Screen HS = new History_Screen();
@@ -42,17 +37,34 @@ namespace Calculator
 
         private void Add_Click(object sender, EventArgs e)
         {
+            //какие-то действия
 
+            CurrentState_Record_Screen CSRS = new CurrentState_Record_Screen();
+            CSRS.Show();
+            CSRS.Location = this.Location;
+            CSRS.Size = this.Size;
+            this.Visible = false;
         }
 
         private void Subtract_Click(object sender, EventArgs e)
         {
+            //какие-то действия
 
+            CurrentState_Record_Screen CSRS = new CurrentState_Record_Screen();
+            CSRS.Show();
+            CSRS.Location = this.Location;
+            CSRS.Size = this.Size;
+            this.Visible = false;
         }
 
         private void CurrentStateList_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            CurrentState_Record_Screen CSRS = new CurrentState_Record_Screen();
+            CSRS.Show();
+            CSRS.Location = this.Location;
+            CSRS.Size = this.Size;
+            this.Visible = false;
+            //+добавление инфы, запрет редактирования полей и инвизибл для кнопки сохранить (нельзя ли тут редактировать ???) 
         }
 
         private void CurrentState_Screen_Closed(object sender, FormClosedEventArgs e)

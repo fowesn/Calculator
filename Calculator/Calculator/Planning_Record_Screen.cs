@@ -16,5 +16,50 @@ namespace Calculator
         {
             InitializeComponent();
         }
+
+        private void CurrentState_Click(object sender, EventArgs e)
+        {
+            CurrentState_Screen CSS = new CurrentState_Screen();
+            CSS.Show();
+            CSS.Location = this.Location;
+            CSS.Size = this.Size;
+            this.Visible = false;
+        }
+
+        private void History_Click(object sender, EventArgs e)
+        {
+            History_Screen HS = new History_Screen();
+            HS.Show();
+            HS.Location = this.Location;
+            HS.Size = this.Size;
+            this.Visible = false;
+        }
+
+        private void Save_Click(object sender, EventArgs e)
+        {
+            Planning_Screen PS = new Planning_Screen();
+            PS.Show();
+            PS.Location = this.Location;
+            PS.Size = this.Size;
+            this.Visible = false;
+        }
+
+        private void Cancel_Click(object sender, EventArgs e)
+        {
+            Planning_Screen PS = new Planning_Screen();
+            PS.Show();
+            PS.Location = this.Location;
+            PS.Size = this.Size;
+            this.Visible = false;
+        }
+
+        private void Planning_Record_Screen_Closed(object sender, FormClosedEventArgs e)
+        {
+            Planning_Screen PS = new Planning_Screen();
+            PS.Show();
+            PS.Location = this.Location;
+            PS.Size = this.Size;
+            this.Visible = false;
+        }
     }
 }

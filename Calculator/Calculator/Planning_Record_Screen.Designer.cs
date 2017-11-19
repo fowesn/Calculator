@@ -64,6 +64,7 @@
             this.Save.TabIndex = 36;
             this.Save.Text = "Сохранить";
             this.Save.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Save.Click += new System.EventHandler(this.Save_Click);
             // 
             // Cancel
             // 
@@ -77,6 +78,7 @@
             this.Cancel.TabIndex = 35;
             this.Cancel.Text = "Отменить";
             this.Cancel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Cancel.Click += new System.EventHandler(this.Cancel_Click);
             // 
             // Today
             // 
@@ -108,6 +110,7 @@
             this.CurrentState.TabIndex = 33;
             this.CurrentState.Text = "Текущее состояние";
             this.CurrentState.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.CurrentState.Click += new System.EventHandler(this.CurrentState_Click);
             // 
             // AddSubBar
             // 
@@ -183,6 +186,7 @@
             this.History.TabIndex = 27;
             this.History.Text = "История";
             this.History.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.History.Click += new System.EventHandler(this.History_Click);
             // 
             // SideBarBG
             // 
@@ -352,9 +356,10 @@
             this.Controls.Add(this.SideBarBG);
             this.MinimumSize = new System.Drawing.Size(690, 500);
             this.Name = "Planning_Record_Screen";
-            this.Text = "Planning_Record_Screen";
+            this.Text = "Добавить новый пункт";
             this.ResumeLayout(false);
             this.PerformLayout();
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Planning_Record_Screen_Closed);
 
         }
 
