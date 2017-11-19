@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem(new string[] {
             "werty"}, -1, System.Drawing.Color.Empty, System.Drawing.SystemColors.Window, new System.Drawing.Font("Century Gothic", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204))));
-            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem(new string[] {
             "sdfgn"}, -1, System.Drawing.Color.Empty, System.Drawing.Color.Empty, new System.Drawing.Font("Century Gothic", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204))));
             this.Planning = new System.Windows.Forms.Label();
             this.History = new System.Windows.Forms.Label();
@@ -99,12 +99,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PlanningList.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            listViewItem7.ToolTipText = "sredrgfhcgv";
-            listViewItem7.UseItemStyleForSubItems = false;
-            listViewItem8.UseItemStyleForSubItems = false;
+            listViewItem9.ToolTipText = "sredrgfhcgv";
+            listViewItem9.UseItemStyleForSubItems = false;
+            listViewItem10.UseItemStyleForSubItems = false;
             this.PlanningList.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem7,
-            listViewItem8});
+            listViewItem9,
+            listViewItem10});
             this.PlanningList.Location = new System.Drawing.Point(225, 75);
             this.PlanningList.MultiSelect = false;
             this.PlanningList.Name = "PlanningList";
@@ -112,6 +112,7 @@
             this.PlanningList.TabIndex = 34;
             this.PlanningList.UseCompatibleStateImageBehavior = false;
             this.PlanningList.View = System.Windows.Forms.View.List;
+            this.PlanningList.SelectedIndexChanged += new System.EventHandler(this.PlanningList_SelectedIndexChanged);
             // 
             // Today
             // 
@@ -205,6 +206,7 @@
             this.Add.TabIndex = 42;
             this.Add.Text = "Добавить доход";
             this.Add.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Add.Click += new System.EventHandler(this.Add_Click);
             // 
             // Subtract
             // 
@@ -220,6 +222,7 @@
             this.Subtract.TabIndex = 41;
             this.Subtract.Text = "Добавить расход";
             this.Subtract.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Subtract.Click += new System.EventHandler(this.Subtract_Click);
             // 
             // Clear
             // 
@@ -234,6 +237,7 @@
             this.Clear.TabIndex = 43;
             this.Clear.Text = "Очистить";
             this.Clear.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Clear.Click += new System.EventHandler(this.Clear_Click);
             // 
             // CalculateBar
             // 
@@ -259,6 +263,7 @@
             this.Calculate.TabIndex = 45;
             this.Calculate.Text = "Рассчитать";
             this.Calculate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Calculate.Click += new System.EventHandler(this.Calculate_Click);
             // 
             // Date
             // 

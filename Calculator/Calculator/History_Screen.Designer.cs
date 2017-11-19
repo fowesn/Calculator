@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
             "werty"}, -1, System.Drawing.Color.Empty, System.Drawing.SystemColors.Window, new System.Drawing.Font("Century Gothic", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204))));
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
             "sdfgn"}, -1, System.Drawing.Color.Empty, System.Drawing.Color.Empty, new System.Drawing.Font("Century Gothic", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204))));
             this.HistoryList = new System.Windows.Forms.ListView();
             this.Today = new System.Windows.Forms.Label();
@@ -51,12 +51,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.HistoryList.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            listViewItem1.ToolTipText = "sredrgfhcgv";
-            listViewItem1.UseItemStyleForSubItems = false;
-            listViewItem2.UseItemStyleForSubItems = false;
+            listViewItem3.ToolTipText = "sredrgfhcgv";
+            listViewItem3.UseItemStyleForSubItems = false;
+            listViewItem4.UseItemStyleForSubItems = false;
             this.HistoryList.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2});
+            listViewItem3,
+            listViewItem4});
             this.HistoryList.Location = new System.Drawing.Point(225, 75);
             this.HistoryList.MultiSelect = false;
             this.HistoryList.Name = "HistoryList";
@@ -64,6 +64,7 @@
             this.HistoryList.TabIndex = 25;
             this.HistoryList.UseCompatibleStateImageBehavior = false;
             this.HistoryList.View = System.Windows.Forms.View.List;
+            this.HistoryList.SelectedIndexChanged += new System.EventHandler(this.HistoryList_SelectedIndexChanged);
             // 
             // Today
             // 
@@ -200,6 +201,7 @@
             this.Clear.TabIndex = 32;
             this.Clear.Text = "Очистить";
             this.Clear.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Clear.Click += new System.EventHandler(this.Clear_Click);
             // 
             // History_Screen
             // 

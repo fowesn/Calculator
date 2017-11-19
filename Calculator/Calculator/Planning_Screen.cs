@@ -35,9 +35,35 @@ namespace Calculator
             this.Visible = false;
         }
 
+        private void PlanningList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Clear_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Add_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Subtract_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Calculate_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void Planning_Screen_Closed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
         }
+
     }
 }

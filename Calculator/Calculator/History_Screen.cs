@@ -36,10 +36,19 @@ namespace Calculator
             this.Visible = false;
         }
 
+        private void HistoryList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Clear_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void History_Screen_Closed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
         }
-
     }
 }
