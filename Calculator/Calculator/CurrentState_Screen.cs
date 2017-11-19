@@ -24,6 +24,7 @@ namespace Calculator
             HS.Location = this.Location;  //чтобы окно открывалось в том же месте, где и окно, с которого совершён переход
             HS.Size = this.Size; //то же для размеров
             this.Visible = false;
+            //this.Close();
         }
 
         private void Planning_Click(object sender, EventArgs e)

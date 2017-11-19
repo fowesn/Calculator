@@ -63,6 +63,12 @@
     <Compile Include="History_Record_Screen.Designer.cs">
       <DependentUpon>History_Record_Screen.cs</DependentUpon>
     </Compile>
+    <Compile Include="InitialState_Screen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InitialState_Screen.Designer.cs">
+      <DependentUpon>InitialState_Screen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Planning_Record_Screen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,6 +100,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="History_Screen.resx">
       <DependentUpon>History_Screen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InitialState_Screen.resx">
+      <DependentUpon>InitialState_Screen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Planning_Record_Screen.resx">
       <DependentUpon>Planning_Record_Screen.cs</DependentUpon>
