@@ -10,20 +10,19 @@ using System.Windows.Forms;
 
 namespace Calculator
 {
-    public partial class History_Screen : Form
+    public partial class History_Record_Screen : Form
     {
-        public History_Screen()
+        public History_Record_Screen()
         {
             InitializeComponent();
-            
         }
 
         private void CurrentState_Click(object sender, EventArgs e)
         {
             CurrentState_Screen CSS = new CurrentState_Screen();
             CSS.Show();
-            CSS.Location = this.Location; //чтобы окно открывалось в том же месте, где и окно, с которого совершён переход
-            CSS.Size = this.Size; //то же для размеров
+            CSS.Location = this.Location;
+            CSS.Size = this.Size;
             this.Visible = false;
         }
 
@@ -36,23 +35,22 @@ namespace Calculator
             this.Visible = false;
         }
 
-        private void HistoryList_SelectedIndexChanged(object sender, EventArgs e)
+        private void Cancel_Click(object sender, EventArgs e)
         {
-            History_Record_Screen HRS = new History_Record_Screen();
-            HRS.Show();
-            HRS.Location = this.Location;
-            HRS.Size = this.Size;
+            History_Screen HS = new History_Screen();
+            HS.Show();
+            HS.Location = this.Location;
+            HS.Size = this.Size;
             this.Visible = false;
         }
 
-        private void Clear_Click(object sender, EventArgs e)
+        private void History_Record_Screen_Closed(object sender, FormClosedEventArgs e)
         {
-
-        }
-
-        private void History_Screen_Closed(object sender, FormClosedEventArgs e)
-        {
-            Application.Exit();
+            History_Screen HS = new History_Screen();
+            HS.Show();
+            HS.Location = this.Location;
+            HS.Size = this.Size;
+            this.Visible = false;
         }
     }
 }

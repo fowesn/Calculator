@@ -35,9 +35,55 @@ namespace Calculator
             this.Visible = false;
         }
 
+        private void PlanningList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Planning_Record_Screen PRS = new Planning_Record_Screen();
+            PRS.Show();
+            PRS.Location = this.Location;
+            PRS.Size = this.Size;
+            this.Visible = false;
+
+            //+ ...
+        }
+
+        private void Clear_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Add_Click(object sender, EventArgs e)
+        {
+            //действия 
+
+
+            Planning_Record_Screen PRS = new Planning_Record_Screen();
+            PRS.Show();
+            PRS.Location = this.Location;
+            PRS.Size = this.Size;
+            this.Visible = false;
+        }
+
+        private void Subtract_Click(object sender, EventArgs e)
+        {
+            //действия 
+
+
+            Planning_Record_Screen PRS = new Planning_Record_Screen();
+            PRS.Show();
+            PRS.Location = this.Location;
+            PRS.Size = this.Size;
+            this.Visible = false;
+        }
+
+        private void Calculate_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void Planning_Screen_Closed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
         }
+
     }
 }
