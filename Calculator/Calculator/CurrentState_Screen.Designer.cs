@@ -201,6 +201,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CurrentStateList.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.CurrentStateList.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             listViewItem1.ToolTipText = "sredrgfhcgv";
             listViewItem1.UseItemStyleForSubItems = false;
             listViewItem2.UseItemStyleForSubItems = false;
