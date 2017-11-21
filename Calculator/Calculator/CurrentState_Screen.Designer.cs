@@ -28,10 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
-            "werty"}, -1, System.Drawing.Color.Empty, System.Drawing.SystemColors.Window, new System.Drawing.Font("Century Gothic", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204))));
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
-            "sdfgn"}, -1, System.Drawing.Color.Empty, System.Drawing.Color.Empty, new System.Drawing.Font("Century Gothic", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204))));
             this.SideBarBG = new System.Windows.Forms.Label();
             this.History = new System.Windows.Forms.Label();
             this.Planning = new System.Windows.Forms.Label();
@@ -43,7 +39,6 @@
             this.Today = new System.Windows.Forms.Label();
             this.Subtract = new System.Windows.Forms.Label();
             this.Add = new System.Windows.Forms.Label();
-            this.CurrentStateList = new System.Windows.Forms.ListView();
             this.SuspendLayout();
             // 
             // SideBarBG
@@ -195,34 +190,12 @@
             this.Add.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.Add.Click += new System.EventHandler(this.Add_Click);
             // 
-            // CurrentStateList
-            // 
-            this.CurrentStateList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.CurrentStateList.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            listViewItem1.ToolTipText = "sredrgfhcgv";
-            listViewItem1.UseItemStyleForSubItems = false;
-            listViewItem2.UseItemStyleForSubItems = false;
-            this.CurrentStateList.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2});
-            this.CurrentStateList.Location = new System.Drawing.Point(225, 75);
-            this.CurrentStateList.MultiSelect = false;
-            this.CurrentStateList.Name = "CurrentStateList";
-            this.CurrentStateList.Size = new System.Drawing.Size(551, 397);
-            this.CurrentStateList.TabIndex = 14;
-            this.CurrentStateList.UseCompatibleStateImageBehavior = false;
-            this.CurrentStateList.View = System.Windows.Forms.View.List;
-            this.CurrentStateList.SelectedIndexChanged += new System.EventHandler(this.CurrentStateList_SelectedIndexChanged);
-            // 
             // CurrentState_Screen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(774, 471);
-            this.Controls.Add(this.CurrentStateList);
             this.Controls.Add(this.Add);
             this.Controls.Add(this.Subtract);
             this.Controls.Add(this.Today);
@@ -257,7 +230,6 @@
         private System.Windows.Forms.Label Today;
         private System.Windows.Forms.Label Subtract;
         private System.Windows.Forms.Label Add;
-        private System.Windows.Forms.ListView CurrentStateList;
     }
 }
 
