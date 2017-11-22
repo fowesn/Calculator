@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CurrentState_Record.cs" />
     <Compile Include="CurrentState_Record_Screen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -57,6 +58,7 @@
     <Compile Include="CurrentState_Screen.Designer.cs">
       <DependentUpon>CurrentState_Screen.cs</DependentUpon>
     </Compile>
+    <Compile Include="History_Record.cs" />
     <Compile Include="History_Record_Screen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,6 +71,7 @@
     <Compile Include="InitialState_Screen.Designer.cs">
       <DependentUpon>InitialState_Screen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Planning_Record.cs" />
     <Compile Include="Planning_Record_Screen.cs">
       <SubType>Form</SubType>
     </Compile>

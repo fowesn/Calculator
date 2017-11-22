@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Calculator
 {
@@ -15,6 +16,8 @@ namespace Calculator
         public CurrentState_Screen()
         {
             InitializeComponent();
+            StreamReader CurrentState = new StreamReader(@"CurrentStateList.txt");
+            Account.Text = CurrentState.ReadLine() + " руб.";
         }
 
         private void History_Click(object sender, EventArgs e)
