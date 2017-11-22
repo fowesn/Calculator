@@ -25,7 +25,7 @@ namespace Calculator
                 MessageBox.Show("Введено неверное значение!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return;
             }
-            File.WriteAllText(@"CurrentStateList.txt", a.ToString() + '\n' + '0' + '\n');
+            File.WriteAllText(@"CurrentStateList.txt", a.ToString() + "\r\n" + '0' + "\r\n");
             CurrentState_Screen CSS = new CurrentState_Screen();
             CSS.Show();
             CSS.Location = this.Location;

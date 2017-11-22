@@ -13,31 +13,37 @@ namespace Calculator
 {
     public partial class CurrentState_Screen : Form
     {
+        int n;
+        float account;
         public CurrentState_Screen()
         {
             InitializeComponent();
 
-            StreamReader CurrentState = new StreamReader(@"CurrentStateList.txt");
-            Account.Text = CurrentState.ReadLine() + " руб.";
+            StreamReader sr = new StreamReader(@"CurrentStateList.txt");
+            account = float.Parse(sr.ReadLine());
+
             Today.Text = DateTime.Today.ToShortDateString();
 
-            int n = int.Parse(CurrentState.ReadLine());
+            n = int.Parse(sr.ReadLine());
             
             CurrentState_Record[] CurrentStateRecord = new CurrentState_Record[n];
             for(int i = 0; i < n; i++)
             {
                 CurrentStateRecord[i] = new CurrentState_Record();
-                if(!CurrentStateRecord[i].Read(i, CurrentState))
+                if(!CurrentStateRecord[i].Read(i, sr))
                 {
                     DialogResult Res = MessageBox.Show("Произошла ошибка при загрузке данных. История текущего состояния счёта будет очищена.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                    CurrentState.Close();
+                    sr.Close();
+                    Application.ExitThread();
                     InitialState_Screen ISS = new InitialState_Screen(true);
                     ISS.Show();
                     ISS.Location = this.Location;
                     ISS.Size = this.Size;
-                    Application.ExitThread();
-                    Application.Run(new InitialState_Screen(true));
+                    try { Application.Run(ISS); }
+                    catch { new InitialState_Screen(true).Show(); }
                 }
+
+                account = CurrentStateRecord[i].GetIncrease ? account + CurrentStateRecord[i].GetAmount : account - CurrentStateRecord[i].GetAmount;
 
                 CurrentStateList.Items.Add(CurrentStateRecord[i].GetCategory);
                 CurrentStateList.Items[3 * i].Font = new Font("Century Gothic", 10, FontStyle.Bold);
@@ -51,6 +57,8 @@ namespace Calculator
                 CurrentStateList.Items.Add(CurrentStateRecord[i].GetComment);
                 CurrentStateList.Items[3 * i + 2].Font = new Font("Century Gothic", 10);
             }
+            sr.Close();
+            Account.Text = account.ToString() + " руб.";
         }
 
         private void History_Click(object sender, EventArgs e)
@@ -74,9 +82,11 @@ namespace Calculator
 
         private void Add_Click(object sender, EventArgs e)
         {
-            //какие-то действия
+            StreamWriter sw = File.AppendText(@"CurrentStateList.txt");
+            sw.Write("{0};true;" + DateTime.Today.ToShortDateString() + ";", n);
+            sw.Close();
 
-            CurrentState_Record_Screen CSRS = new CurrentState_Record_Screen();
+            CurrentState_Record_Screen CSRS = new CurrentState_Record_Screen(-1);
             CSRS.Show();
             CSRS.Location = this.Location;
             CSRS.Size = this.Size;
@@ -85,9 +95,11 @@ namespace Calculator
 
         private void Subtract_Click(object sender, EventArgs e)
         {
-            //какие-то действия
+            StreamWriter sw = File.AppendText(@"CurrentStateList.txt");
+            sw.Write("{0};false;" + DateTime.Today.ToShortDateString() + ";", n);
+            sw.Close();
 
-            CurrentState_Record_Screen CSRS = new CurrentState_Record_Screen();
+            CurrentState_Record_Screen CSRS = new CurrentState_Record_Screen(-1);
             CSRS.Show();
             CSRS.Location = this.Location;
             CSRS.Size = this.Size;
@@ -96,7 +108,13 @@ namespace Calculator
 
         private void CurrentStateList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CurrentState_Record_Screen CSRS = new CurrentState_Record_Screen();
+            int index = CurrentStateList.SelectedIndices[0];
+            CurrentState_Record_Screen CSRS = new CurrentState_Record_Screen((index - index % 3) / 3); // это формула, которая выведена из того, что на каждый элемент таблицы приходится 
+                                                                                                       // по три записи. т.е. для каждой записи индекс в таблице будет 
+                                                                                                       // индекс = 3 * (номер записи) + [0,1,2], где [0,1,2] - одна из трёх частей записи
+                                                                                                       // пусть номер записи = х и индекс известен, отсюда
+                                                                                                       // i = 3x + [0,1,2]
+                                                                                                       // => x = (i - i % 3) / 3
             CSRS.Show();
             CSRS.Location = this.Location;
             CSRS.Size = this.Size;
