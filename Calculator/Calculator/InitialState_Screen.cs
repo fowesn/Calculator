@@ -7,18 +7,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Calculator
 {
     public partial class InitialState_Screen : Form
     {
-        public InitialState_Screen()
+        public InitialState_Screen(bool war)
         {
             InitializeComponent();
         }
 
         private void Save_Click(object sender, EventArgs e)
         {
+            if (!float.TryParse(Amount.Text, out float a))
+            {
+                MessageBox.Show("Введено неверное значение!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+            File.WriteAllText(@"CurrentStateList.txt", a.ToString() + '\n' + '0' + '\n');
             CurrentState_Screen CSS = new CurrentState_Screen();
             CSS.Show();
             CSS.Location = this.Location;
