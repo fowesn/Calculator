@@ -37,18 +37,17 @@ namespace Calculator
                     CurrentState.Close();
                     Application.Run(new InitialState_Screen(true));
                 }
-
-                //файл не пуст и первые 2 строки соответствуют шаблону
-                else if (int.TryParse(CurrentState.ReadLine(), out int n))
-                {
-                    CurrentState.Close();
-                    Application.Run(new CurrentState_Screen());
-                }
-                else
+                else if (!int.TryParse(CurrentState.ReadLine(), out int n))
                 {
                     //файл не пуст, но вторая строка не соответствует шаблону
                     CurrentState.Close();
                     Application.Run(new InitialState_Screen(true));
+                }
+                else
+                {
+                    //файл не пуст и первые 2 строки соответствуют шаблону
+                    CurrentState.Close();
+                    Application.Run(new CurrentState_Screen());
                 }
             }
             else
