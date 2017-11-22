@@ -121,6 +121,7 @@
             this.Text = "Начальное состояние счёта";
             this.ResumeLayout(false);
             this.PerformLayout();
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.InitialState_Screen_Closed);
 
         }
 

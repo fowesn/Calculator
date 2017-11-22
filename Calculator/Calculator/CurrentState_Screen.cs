@@ -16,6 +16,7 @@ namespace Calculator
         public CurrentState_Screen()
         {
             InitializeComponent();
+
             StreamReader CurrentState = new StreamReader(@"CurrentStateList.txt");
             Account.Text = CurrentState.ReadLine() + " руб.";
             Today.Text = DateTime.Today.ToShortDateString();
@@ -26,7 +27,17 @@ namespace Calculator
             for(int i = 0; i < n; i++)
             {
                 CurrentStateRecord[i] = new CurrentState_Record();
-                CurrentStateRecord[i].Read(i, CurrentState);
+                if(!CurrentStateRecord[i].Read(i, CurrentState))
+                {
+                    DialogResult Res = MessageBox.Show("Произошла ошибка при загрузке данных. История текущего состояния счёта будет очищена.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    CurrentState.Close();
+                    InitialState_Screen ISS = new InitialState_Screen(true);
+                    ISS.Show();
+                    ISS.Location = this.Location;
+                    ISS.Size = this.Size;
+                    Application.ExitThread();
+                    Application.Run(new InitialState_Screen(true));
+                }
 
                 CurrentStateList.Items.Add(CurrentStateRecord[i].GetCategory);
                 CurrentStateList.Items[3 * i].Font = new Font("Century Gothic", 10, FontStyle.Bold);
@@ -90,7 +101,7 @@ namespace Calculator
             CSRS.Location = this.Location;
             CSRS.Size = this.Size;
             this.Visible = false;
-            //+добавление инфы, запрет редактирования полей и инвизибл для кнопки сохранить (нельзя ли тут редактировать ???) 
+            //+добавление инфы
         }
 
         private void CurrentState_Screen_Closed(object sender, FormClosedEventArgs e)

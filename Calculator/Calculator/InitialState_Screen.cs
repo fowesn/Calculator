@@ -32,5 +32,10 @@ namespace Calculator
             CSS.Size = this.Size;
             this.Visible = false;
         }
+
+        private void InitialState_Screen_Closed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

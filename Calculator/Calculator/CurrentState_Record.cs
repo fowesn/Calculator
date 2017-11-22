@@ -40,11 +40,8 @@ namespace Calculator
         }
         public bool Read(int i, StreamReader CurrentStateList)
         {
-            //CurrentStateList.ReadLine();
-            //CurrentStateList.ReadLine();
-            //for (int k = 0; k < i; i++)
-            //    CurrentStateList.ReadLine();
             string s = CurrentStateList.ReadLine();
+            if (s == null) return false;
             string[] ss = s.Split(';');
             if (!int.TryParse(ss[0], out id)) return false;
             if (!bool.TryParse(ss[1], out increase)) return false;
