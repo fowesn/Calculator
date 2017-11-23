@@ -61,7 +61,7 @@ namespace Calculator
                 MessageBox.Show("Укажите сумму", "Не заполнены обязательные поля", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if(!float.TryParse(Amount.Text, out float amount))
+            if(!float.TryParse(Amount.Text, out float amount) && amount < 0)
             {
                 MessageBox.Show("Данные в поле \"Сумма\" введены неверно", "Не заполнены обязательные поля", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -73,11 +73,11 @@ namespace Calculator
             if (index < 0)
             {
                 CurrentState_Record NewRecord = new CurrentState_Record();
-                NewRecord.Write(category, amount, commentary);
+                NewRecord.Write(category, (float)Math.Round(amount, 2), commentary);
             }
             else
             {
-                EditRecord.Edit(category, amount, commentary);
+                EditRecord.Edit(category, (float)Math.Round(amount, 2), commentary);
             }
             CurrentState_Screen CSS = new CurrentState_Screen();
             CSS.Show();

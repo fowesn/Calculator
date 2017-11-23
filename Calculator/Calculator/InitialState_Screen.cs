@@ -20,7 +20,7 @@ namespace Calculator
 
         private void Save_Click(object sender, EventArgs e)
         {
-            if (!float.TryParse(Amount.Text, out float a))
+            if (!float.TryParse(Amount.Text, out float a) && a < 0)
             {
                 MessageBox.Show("Введено неверное значение!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return;

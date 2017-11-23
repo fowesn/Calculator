@@ -58,7 +58,7 @@ namespace Calculator
                 CurrentStateList.Items[3 * i + 2].Font = new Font("Century Gothic", 10);
             }
             sr.Close();
-            Account.Text = account.ToString() + " руб.";
+            Account.Text = Math.Round(account, 2).ToString() + " руб.";
         }
 
         private void History_Click(object sender, EventArgs e)
