@@ -37,9 +37,12 @@ namespace Calculator
         public void Edit(string cat, float am, string com)
         {
             category = cat;
-            amount = am;
             commentary = com;
             string[] file = File.ReadAllLines(@"CurrentStateList.txt");
+
+            file[0] = increase ? (float.Parse(file[0]) - amount + am).ToString() : (float.Parse(file[0]) + amount - am).ToString();
+
+            amount = am;
             file[id + 2] = id.ToString() + ';' + increase.ToString() + ';' + date.ToShortDateString() + ';' + category + ';' + amount.ToString() + ';' + commentary;
             File.WriteAllLines(@"CurrentStateList.txt", file);
 
@@ -70,6 +73,7 @@ namespace Calculator
             string[] file = File.ReadAllLines(@"CurrentStateList.txt");
             file[1] = (int.Parse(file[1]) + 1).ToString();
             file[file.Length - 1] += category + ";" + amount.ToString() + ";" + commentary;
+            file[0] = bool.Parse(file[file.Length - 1].Split(';')[1]) ? (float.Parse(file[0]) + amount).ToString() : (float.Parse(file[0]) - amount).ToString();
             File.WriteAllLines(@"CurrentStateList.txt", file);
             return true;
         }

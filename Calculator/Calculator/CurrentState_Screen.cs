@@ -43,7 +43,9 @@ namespace Calculator
                     catch { new InitialState_Screen().Show(); }
                 }
 
-                account = CurrentStateRecord[i].GetIncrease ? account + CurrentStateRecord[i].GetAmount : account - CurrentStateRecord[i].GetAmount;
+
+                //!!!
+                //account = CurrentStateRecord[i].GetIncrease ? account + CurrentStateRecord[i].GetAmount : account - CurrentStateRecord[i].GetAmount;
 
                 CurrentStateList.Items.Add(CurrentStateRecord[i].GetCategory);
                 CurrentStateList.Items[3 * i].Font = new Font("Century Gothic", 10, FontStyle.Bold);

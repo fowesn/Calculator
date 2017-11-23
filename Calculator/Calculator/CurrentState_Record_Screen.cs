@@ -19,9 +19,11 @@ namespace Calculator
         {
             InitializeComponent();
             index = id;
+            string[] file = File.ReadAllLines(@"CurrentStateList.txt");
+            Account.Text = file[0] + " руб.";
+            Today.Text = DateTime.Today.ToShortDateString();
             if(index != -1)
             {
-                string[] file = File.ReadAllLines(@"CurrentStateList.txt");
                 file = file[index + 2].Split(';');
                 EditRecord = new CurrentState_Record(int.Parse(file[0]), file[3], float.Parse(file[4]), file[5], DateTime.Parse(file[2]), bool.Parse(file[1]));
                 Category.Text = EditRecord.GetCategory;

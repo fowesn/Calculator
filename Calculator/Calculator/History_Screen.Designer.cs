@@ -28,11 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
-            "werty"}, -1, System.Drawing.Color.Empty, System.Drawing.SystemColors.Window, new System.Drawing.Font("Century Gothic", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204))));
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
-            "sdfgn"}, -1, System.Drawing.Color.Empty, System.Drawing.Color.Empty, new System.Drawing.Font("Century Gothic", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204))));
-            this.HistoryList = new System.Windows.Forms.ListView();
             this.Today = new System.Windows.Forms.Label();
             this.Account = new System.Windows.Forms.Label();
             this.CurrentStateBar = new System.Windows.Forms.Label();
@@ -43,29 +38,8 @@
             this.ClearBar = new System.Windows.Forms.Label();
             this.CurrentState = new System.Windows.Forms.Label();
             this.Clear = new System.Windows.Forms.Label();
+            this.HistoryList = new System.Windows.Forms.ListView();
             this.SuspendLayout();
-            // 
-            // HistoryList
-            // 
-            this.HistoryList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.HistoryList.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.HistoryList.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            listViewItem1.ToolTipText = "sredrgfhcgv";
-            listViewItem1.UseItemStyleForSubItems = false;
-            listViewItem2.UseItemStyleForSubItems = false;
-            this.HistoryList.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2});
-            this.HistoryList.Location = new System.Drawing.Point(225, 75);
-            this.HistoryList.MultiSelect = false;
-            this.HistoryList.Name = "HistoryList";
-            this.HistoryList.Size = new System.Drawing.Size(551, 397);
-            this.HistoryList.TabIndex = 25;
-            this.HistoryList.UseCompatibleStateImageBehavior = false;
-            this.HistoryList.View = System.Windows.Forms.View.List;
-            this.HistoryList.SelectedIndexChanged += new System.EventHandler(this.HistoryList_SelectedIndexChanged);
             // 
             // Today
             // 
@@ -204,18 +178,34 @@
             this.Clear.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.Clear.Click += new System.EventHandler(this.Clear_Click);
             // 
+            // HistoryList
+            // 
+            this.HistoryList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.HistoryList.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.HistoryList.Font = new System.Drawing.Font("Century Gothic", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.HistoryList.Location = new System.Drawing.Point(231, 75);
+            this.HistoryList.MultiSelect = false;
+            this.HistoryList.Name = "HistoryList";
+            this.HistoryList.Size = new System.Drawing.Size(545, 397);
+            this.HistoryList.TabIndex = 33;
+            this.HistoryList.UseCompatibleStateImageBehavior = false;
+            this.HistoryList.View = System.Windows.Forms.View.List;
+            // 
             // History_Screen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(774, 471);
+            this.Controls.Add(this.HistoryList);
             this.Controls.Add(this.Clear);
             this.Controls.Add(this.CurrentState);
             this.Controls.Add(this.ClearBar);
             this.Controls.Add(this.Planning);
             this.Controls.Add(this.History);
             this.Controls.Add(this.ActiveButton);
-            this.Controls.Add(this.HistoryList);
             this.Controls.Add(this.Today);
             this.Controls.Add(this.Account);
             this.Controls.Add(this.CurrentStateBar);
@@ -231,8 +221,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ListView HistoryList;
         private System.Windows.Forms.Label Today;
         private System.Windows.Forms.Label Account;
         private System.Windows.Forms.Label CurrentStateBar;
@@ -243,5 +231,6 @@
         private System.Windows.Forms.Label ClearBar;
         private System.Windows.Forms.Label CurrentState;
         private System.Windows.Forms.Label Clear;
+        private System.Windows.Forms.ListView HistoryList;
     }
 }
