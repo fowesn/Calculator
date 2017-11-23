@@ -13,7 +13,7 @@ namespace Calculator
 {
     public partial class InitialState_Screen : Form
     {
-        public InitialState_Screen(bool war)
+        public InitialState_Screen()
         {
             InitializeComponent();
         }

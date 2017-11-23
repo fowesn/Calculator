@@ -35,12 +35,12 @@ namespace Calculator
                     DialogResult Res = MessageBox.Show("Произошла ошибка при загрузке данных. История текущего состояния счёта будет очищена.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     sr.Close();
                     Application.ExitThread();
-                    InitialState_Screen ISS = new InitialState_Screen(true);
+                    InitialState_Screen ISS = new InitialState_Screen();
                     ISS.Show();
                     ISS.Location = this.Location;
                     ISS.Size = this.Size;
                     try { Application.Run(ISS); }
-                    catch { new InitialState_Screen(true).Show(); }
+                    catch { new InitialState_Screen().Show(); }
                 }
 
                 account = CurrentStateRecord[i].GetIncrease ? account + CurrentStateRecord[i].GetAmount : account - CurrentStateRecord[i].GetAmount;
@@ -68,7 +68,6 @@ namespace Calculator
             HS.Location = this.Location;  //чтобы окно открывалось в том же месте, где и окно, с которого совершён переход
             HS.Size = this.Size; //то же для размеров
             this.Visible = false;
-            //this.Close();
         }
 
         private void Planning_Click(object sender, EventArgs e)

@@ -35,13 +35,13 @@ namespace Calculator
                 {
                     //файл не пуст, но первая строка не соответствует шаблону
                     CurrentState.Close();
-                    Application.Run(new InitialState_Screen(true));
+                    Application.Run(new InitialState_Screen());
                 }
                 else if (!int.TryParse(CurrentState.ReadLine(), out int n))
                 {
                     //файл не пуст, но вторая строка не соответствует шаблону
                     CurrentState.Close();
-                    Application.Run(new InitialState_Screen(true));
+                    Application.Run(new InitialState_Screen());
                 }
                 else
                 {
@@ -54,7 +54,7 @@ namespace Calculator
             //файл пуст и нет никаких проблем
             {
                 CurrentState.Close();
-                Application.Run(new InitialState_Screen(false));
+                Application.Run(new InitialState_Screen());
             }
         }
     }
