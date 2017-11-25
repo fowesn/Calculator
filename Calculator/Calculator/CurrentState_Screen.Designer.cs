@@ -40,6 +40,7 @@
             this.Subtract = new System.Windows.Forms.Label();
             this.Add = new System.Windows.Forms.Label();
             this.CurrentStateList = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // SideBarBG
@@ -197,15 +198,22 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CurrentStateList.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.CurrentStateList.Font = new System.Drawing.Font("Century Gothic", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CurrentStateList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1});
+            this.CurrentStateList.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.CurrentStateList.Location = new System.Drawing.Point(231, 75);
             this.CurrentStateList.MultiSelect = false;
             this.CurrentStateList.Name = "CurrentStateList";
             this.CurrentStateList.Size = new System.Drawing.Size(545, 397);
             this.CurrentStateList.TabIndex = 14;
             this.CurrentStateList.UseCompatibleStateImageBehavior = false;
-            this.CurrentStateList.View = System.Windows.Forms.View.List;
+            this.CurrentStateList.View = System.Windows.Forms.View.Details;
             this.CurrentStateList.SelectedIndexChanged += new System.EventHandler(this.CurrentStateList_SelectedIndexChanged);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "";
+            this.columnHeader1.Width = 1000;
             // 
             // CurrentState_Screen
             // 
@@ -249,6 +257,7 @@
         private System.Windows.Forms.Label Subtract;
         private System.Windows.Forms.Label Add;
         private System.Windows.Forms.ListView CurrentStateList;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
     }
 }
 

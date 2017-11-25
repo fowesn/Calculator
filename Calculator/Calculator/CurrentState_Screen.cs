@@ -46,6 +46,8 @@ namespace Calculator
 
                 //!!!
                 //account = CurrentStateRecord[i].GetIncrease ? account + CurrentStateRecord[i].GetAmount : account - CurrentStateRecord[i].GetAmount;
+                CurrentStateList.Columns[0].Text = DateTime.Today.ToLongDateString();
+                CurrentStateList.Columns[0].Width = CurrentStateList.Width - 17;
 
                 CurrentStateList.Items.Add(CurrentStateRecord[i].GetCategory);
                 CurrentStateList.Items[3 * i].Font = new Font("Century Gothic", 10, FontStyle.Bold);
@@ -126,6 +128,13 @@ namespace Calculator
         private void CurrentState_Screen_Closed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        //изменение ширины столбца под ширину таблицы
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
+            CurrentStateList.Columns[0].Width = CurrentStateList.Width - 17;
         }
     }
 }
