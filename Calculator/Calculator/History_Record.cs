@@ -9,7 +9,7 @@ namespace Calculator
 {
     class History_Record
     {
-        private int id;
+        //private int id;
         private string category;
         private float amount;
         private string commentary;
@@ -42,7 +42,6 @@ namespace Calculator
             string[] ss = s.Split(';');
             try
             {
-                if (!int.TryParse(ss[0], out id)) return false;
                 if (!bool.TryParse(ss[1], out increase)) return false;
                 if (!DateTime.TryParse(ss[2], out date)) return false;
                 category = ss[3];

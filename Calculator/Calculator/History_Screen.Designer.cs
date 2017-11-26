@@ -121,6 +121,7 @@
             this.Clear.TabIndex = 35;
             this.Clear.Text = "Очистить";
             this.Clear.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Clear.Click += new System.EventHandler(this.Clear_Click);
             // 
             // ClearBar
             // 

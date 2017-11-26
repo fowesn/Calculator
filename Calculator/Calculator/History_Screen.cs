@@ -132,7 +132,12 @@ namespace Calculator
 
         private void Clear_Click(object sender, EventArgs e)
         {
+            StreamWriter sw = new StreamWriter(@"HistoryList.txt", false);
+            sw.WriteLine("0");
+            sw.Close();
 
+            for (int i = HistoryList.Items.Count - 1; i > 0; i--)
+                HistoryList.Items[i].Remove();
         }
 
         private void History_Screen_Closed(object sender, FormClosedEventArgs e)
