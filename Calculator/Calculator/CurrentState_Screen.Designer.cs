@@ -201,6 +201,7 @@
             this.CurrentStateList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1});
             this.CurrentStateList.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CurrentStateList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.CurrentStateList.Location = new System.Drawing.Point(231, 75);
             this.CurrentStateList.MultiSelect = false;
             this.CurrentStateList.Name = "CurrentStateList";

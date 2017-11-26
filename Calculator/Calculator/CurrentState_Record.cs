@@ -47,7 +47,7 @@ namespace Calculator
             File.WriteAllLines(@"CurrentStateList.txt", file);
 
         }
-        public bool Read(int i, StreamReader CurrentStateList)
+        public bool Read(StreamReader CurrentStateList)
         {
             string s = CurrentStateList.ReadLine();
             if (s == null) return false;

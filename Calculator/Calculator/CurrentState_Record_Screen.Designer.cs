@@ -215,12 +215,6 @@
             this.Category.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Category.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Category.FormattingEnabled = true;
-            this.Category.Items.AddRange(new object[] {
-            "Стипендия",
-            "Зарплата",
-            "Питание",
-            "Одежда",
-            "Другое"});
             this.Category.Location = new System.Drawing.Point(467, 100);
             this.Category.Name = "Category";
             this.Category.Size = new System.Drawing.Size(254, 29);

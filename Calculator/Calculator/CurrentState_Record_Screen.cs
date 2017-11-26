@@ -22,19 +22,59 @@ namespace Calculator
             string[] file = File.ReadAllLines(@"CurrentStateList.txt");
             Account.Text = file[0] + " руб.";
             Today.Text = DateTime.Today.ToShortDateString();
-            if(index != -1)
+
+            if (index != -1)
             {
                 file = file[index + 2].Split(';');
+                if (bool.Parse(file[1]))
+                {
+                    string[] categories = { "Стипендия", "Пенсия", "Долг", "Подарок", "Компенсация", "Подработка" };
+                    Array.Sort(categories);
+                    Category.Items.AddRange(categories);
+                }
+                else
+                {
+                    string[] categories = { "Питание", "Одежда", "Долг", "Транспорт", "Интернет", "Телефон", "ЖКУ", "Подарки", "Техника",
+                                        "Канцелярия", "Книги", "Бытовая химия", "Ремонт", "Лечение" };
+                    Array.Sort(categories);
+                    Category.Items.AddRange(categories);
+                }
                 EditRecord = new CurrentState_Record(int.Parse(file[0]), file[3], float.Parse(file[4]), file[5], DateTime.Parse(file[2]), bool.Parse(file[1]));
                 Category.Text = EditRecord.GetCategory;
                 Amount.Text = EditRecord.GetAmount.ToString();
                 Commentary.Text = EditRecord.GetComment;
                 if (Commentary.Text == "0") Commentary.Text = "";
             }
+            else
+            {
+                string[] f = file[file.Length - 1].Split(';');
+                if (bool.Parse(f[1]))
+                {
+                    string[] categories = { "Стипендия", "Пенсия", "Долг", "Подарок", "Компенсация", "Подработка" };
+                    Array.Sort(categories);
+                    Category.Items.AddRange(categories);
+                }
+                else
+                {
+                    string[] categories = { "Питание", "Одежда", "Долг", "Транспорт", "Интернет", "Телефон", "ЖКУ", "Подарки", "Техника",
+                                        "Канцелярия", "Книги", "Бытовая химия", "Ремонт", "Лечение" };
+                    Array.Sort(categories);
+                    Category.Items.AddRange(categories);
+                }
+            }
+            Category.Items.Add("Другое");
         }
 
         private void History_Click(object sender, EventArgs e)
         {
+            string[] file = File.ReadAllLines(@"CurrentStateList.txt");
+            string delete = file[file.Length - 1];
+            if (delete[delete.Length - 1] == ';')
+            {
+                //удаление последней строки файла, т.к. там записывалась часть инфы перед вызовом этой формы
+                file = (from x in file where !x.Contains(delete) select x).ToArray();
+                File.WriteAllLines(@"CurrentStateList.txt", file);
+            }
             History_Screen HS = new History_Screen();
             HS.Show();
             HS.Location = this.Location;
@@ -44,6 +84,14 @@ namespace Calculator
 
         private void Planning_Click(object sender, EventArgs e)
         {
+            string[] file = File.ReadAllLines(@"CurrentStateList.txt");
+            string delete = file[file.Length - 1];
+            if (delete[delete.Length - 1] == ';')
+            {
+                //удаление последней строки файла, т.к. там записывалась часть инфы перед вызовом этой формы
+                file = (from x in file where !x.Contains(delete) select x).ToArray();
+                File.WriteAllLines(@"CurrentStateList.txt", file);
+            }
             Planning_Screen PS = new Planning_Screen();
             PS.Show();
             PS.Location = this.Location;
@@ -63,7 +111,7 @@ namespace Calculator
                 MessageBox.Show("Укажите сумму", "Не заполнены обязательные поля", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if(!float.TryParse(Amount.Text, out float amount) && amount < 0)
+            if(!float.TryParse(Amount.Text, out float amount) || amount < 0)
             {
                 MessageBox.Show("Данные в поле \"Сумма\" введены неверно", "Не заполнены обязательные поля", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -81,15 +129,15 @@ namespace Calculator
             {
                 EditRecord.Edit(category, (float)Math.Round(amount, 2), commentary);
             }
-            CurrentState_Screen CSS = new CurrentState_Screen();
-            CSS.Show();
-            CSS.Location = this.Location;
-            CSS.Size = this.Size;
-            this.Visible = false;
-
+            this.Close();
         }
 
         private void Cancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void CurrentState_Record_Screen_Closed(object sender, FormClosedEventArgs e)
         {
             string[] file = File.ReadAllLines(@"CurrentStateList.txt");
             string delete = file[file.Length - 1];
@@ -99,15 +147,7 @@ namespace Calculator
                 file = (from x in file where !x.Contains(delete) select x).ToArray();
                 File.WriteAllLines(@"CurrentStateList.txt", file);
             }
-            CurrentState_Screen CSS = new CurrentState_Screen();
-            CSS.Show();
-            CSS.Location = this.Location;
-            CSS.Size = this.Size;
-            this.Visible = false;
-        }
 
-        private void CurrentState_Record_Screen_Closed(object sender, FormClosedEventArgs e)
-        {
             CurrentState_Screen CSS = new CurrentState_Screen();
             CSS.Show();
             CSS.Location = this.Location;

@@ -19,10 +19,14 @@ namespace Calculator
         {
             InitializeComponent();
 
+            History_Record Transfer = new History_Record();
+            Transfer.Write();
+
             StreamReader sr = new StreamReader(@"CurrentStateList.txt");
             account = float.Parse(sr.ReadLine());
 
             Today.Text = DateTime.Today.ToShortDateString();
+            Account.Text = Math.Round(account, 2).ToString() + " руб.";
 
             n = int.Parse(sr.ReadLine());
             
@@ -30,7 +34,7 @@ namespace Calculator
             for(int i = 0; i < n; i++)
             {
                 CurrentStateRecord[i] = new CurrentState_Record();
-                if(!CurrentStateRecord[i].Read(i, sr))
+                if(!CurrentStateRecord[i].Read(sr))
                 {
                     DialogResult Res = MessageBox.Show("Произошла ошибка при загрузке данных. История текущего состояния счёта будет очищена.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     sr.Close();
@@ -43,11 +47,7 @@ namespace Calculator
                     catch { new InitialState_Screen().Show(); }
                 }
 
-
-                //!!!
-                //account = CurrentStateRecord[i].GetIncrease ? account + CurrentStateRecord[i].GetAmount : account - CurrentStateRecord[i].GetAmount;
                 CurrentStateList.Columns[0].Text = DateTime.Today.ToLongDateString();
-                CurrentStateList.Columns[0].Width = CurrentStateList.Width - 17;
 
                 CurrentStateList.Items.Add(CurrentStateRecord[i].GetCategory);
                 CurrentStateList.Items[3 * i].Font = new Font("Century Gothic", 10, FontStyle.Bold);
@@ -62,7 +62,7 @@ namespace Calculator
                 CurrentStateList.Items[3 * i + 2].Font = new Font("Century Gothic", 10);
             }
             sr.Close();
-            Account.Text = Math.Round(account, 2).ToString() + " руб.";
+
         }
 
         private void History_Click(object sender, EventArgs e)
@@ -122,7 +122,6 @@ namespace Calculator
             CSRS.Location = this.Location;
             CSRS.Size = this.Size;
             this.Visible = false;
-            //+добавление инфы
         }
 
         private void CurrentState_Screen_Closed(object sender, FormClosedEventArgs e)
