@@ -54,11 +54,7 @@ namespace Calculator
 
         private void Cancel_Click(object sender, EventArgs e)
         {
-            History_Screen HS = new History_Screen();
-            HS.Show();
-            HS.Location = this.Location;
-            HS.Size = this.Size;
-            this.Visible = false;
+            this.Close();
         }
 
         private void History_Record_Screen_Closed(object sender, FormClosedEventArgs e)

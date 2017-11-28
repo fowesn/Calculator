@@ -117,7 +117,7 @@ namespace Calculator
             }
             catch { return; }
 
-            int index = HistoryList.SelectedIndices[0];
+            int index = HistoryList.SelectedIndices[0] - 1;
             for (int i = 0; i < HistoryList.SelectedIndices[0]; i++)
             {
                 if (HistoryList.Items[i].BackColor == Color.FromArgb(64, 64, 64))
