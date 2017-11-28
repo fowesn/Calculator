@@ -50,11 +50,12 @@ namespace Calculator
                 {
                     DialogResult Res = MessageBox.Show("Произошла ошибка при загрузке данных. История счёта будет очищена.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     sr.Close();
-                    Application.ExitThread();
-                    InitialState_Screen ISS = new InitialState_Screen();
-                    ISS.Show();
-                    ISS.Location = this.Location;
-                    ISS.Size = this.Size;
+                    StreamWriter sw = new StreamWriter(@"HistoryList.txt", false);
+                    sw.WriteLine("0");
+                    sw.Close();
+
+                    for (int j = HistoryList.Items.Count - 1; i > 0; i--)
+                        HistoryList.Items[j].Remove();
                 }
 
                 //HistoryList.Columns[0].Text = DateTime.Today.ToLongDateString();

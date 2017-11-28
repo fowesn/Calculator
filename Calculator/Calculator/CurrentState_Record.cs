@@ -37,7 +37,7 @@ namespace Calculator
         public void Edit(string cat, float am, string com)
         {
             category = cat;
-            commentary = com;
+            commentary = com == "" ? "0" : com;
             string[] file = File.ReadAllLines(@"CurrentStateList.txt");
 
             file[0] = increase ? (float.Parse(file[0]) - amount + am).ToString() : (float.Parse(file[0]) + amount - am).ToString();

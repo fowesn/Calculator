@@ -28,14 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
-            "werty"}, -1, System.Drawing.Color.Empty, System.Drawing.SystemColors.Window, new System.Drawing.Font("Century Gothic", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204))));
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
-            "sdfgn"}, -1, System.Drawing.Color.Empty, System.Drawing.Color.Empty, new System.Drawing.Font("Century Gothic", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204))));
             this.Planning = new System.Windows.Forms.Label();
             this.History = new System.Windows.Forms.Label();
             this.ActiveButton = new System.Windows.Forms.Label();
             this.PlanningList = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Today = new System.Windows.Forms.Label();
             this.Account = new System.Windows.Forms.Label();
             this.CurrentStateBar = new System.Windows.Forms.Label();
@@ -99,21 +97,24 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PlanningList.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.PlanningList.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            listViewItem1.ToolTipText = "sredrgfhcgv";
-            listViewItem1.UseItemStyleForSubItems = false;
-            listViewItem2.UseItemStyleForSubItems = false;
-            this.PlanningList.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2});
-            this.PlanningList.Location = new System.Drawing.Point(225, 75);
+            this.PlanningList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2});
+            this.PlanningList.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.PlanningList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.PlanningList.Location = new System.Drawing.Point(231, 48);
+            this.PlanningList.Margin = new System.Windows.Forms.Padding(0);
             this.PlanningList.MultiSelect = false;
             this.PlanningList.Name = "PlanningList";
-            this.PlanningList.Size = new System.Drawing.Size(551, 349);
+            this.PlanningList.Size = new System.Drawing.Size(544, 376);
             this.PlanningList.TabIndex = 34;
             this.PlanningList.UseCompatibleStateImageBehavior = false;
-            this.PlanningList.View = System.Windows.Forms.View.List;
+            this.PlanningList.View = System.Windows.Forms.View.Details;
             this.PlanningList.SelectedIndexChanged += new System.EventHandler(this.PlanningList_SelectedIndexChanged);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Width = 613;
             // 
             // Today
             // 
@@ -281,6 +282,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(774, 471);
             this.Controls.Add(this.Date);
             this.Controls.Add(this.Calculate);
@@ -324,5 +326,7 @@
         private System.Windows.Forms.Label CalculateBar;
         private System.Windows.Forms.Label Calculate;
         private System.Windows.Forms.DateTimePicker Date;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
     }
 }

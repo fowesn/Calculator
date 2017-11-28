@@ -111,7 +111,7 @@ namespace Calculator
                 MessageBox.Show("Укажите сумму", "Не заполнены обязательные поля", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if(!float.TryParse(Amount.Text, out float amount) || amount < 0)
+            if(!float.TryParse(Amount.Text, out float amount) || amount <= 0)
             {
                 MessageBox.Show("Данные в поле \"Сумма\" введены неверно", "Не заполнены обязательные поля", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;

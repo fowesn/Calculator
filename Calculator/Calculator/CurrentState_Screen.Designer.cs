@@ -49,6 +49,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SideBarBG.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.SideBarBG.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.SideBarBG.Location = new System.Drawing.Point(0, 0);
             this.SideBarBG.MaximumSize = new System.Drawing.Size(225, 10000);
             this.SideBarBG.MinimumSize = new System.Drawing.Size(225, 472);
