@@ -15,6 +15,7 @@ namespace Calculator
     {
         float account;
         int n;
+        Planning_Record[] PlanningRecord = null;
         public Planning_Screen()
         {
             InitializeComponent();
@@ -45,7 +46,7 @@ namespace Calculator
 
             n = int.Parse(sr.ReadLine());
 
-            Planning_Record[] PlanningRecord = new Planning_Record[n];
+            PlanningRecord = new Planning_Record[n];
             for (int i = 0; i < n; i++)
             {
                 PlanningRecord[i] = new Planning_Record();
@@ -177,7 +178,18 @@ namespace Calculator
 
         private void Calculate_Click(object sender, EventArgs e)
         {
-
+            DateTime TargetDate = Date.Value;
+            int days = (TargetDate - DateTime.Today).Days;
+            float FutureAccount = account;
+            for(int i = 0; i < n; i++)
+            {
+                int times = PlanningRecord[i].GetTimes * (days / PlanningRecord[i].GetDays);
+                FutureAccount = PlanningRecord[i].GetIncrease ? FutureAccount + times * PlanningRecord[i].GetAmount : FutureAccount - times * PlanningRecord[i].GetAmount;
+             }
+            MessageBox.Show("Ваше состояние счёта " + TargetDate.ToLongDateString() + " составит " + 
+                            Math.Round(FutureAccount, 2).ToString() + " руб.", 
+                            "Рассчёт до " + TargetDate.ToLongDateString(), 
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void Planning_Screen_Closed(object sender, FormClosedEventArgs e)
