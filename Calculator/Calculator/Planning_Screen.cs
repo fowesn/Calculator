@@ -71,33 +71,38 @@ namespace Calculator
                 PlanningList.Items[PlanningList.Items.Count - 1].UseItemStyleForSubItems = false;
 
 
-                //для правильного окончания слова "день"
-                string temp = PlanningRecord[i].GetDays.ToString();
+                //для правильного окончания слов "раз" и "день"
+                string result = "";
+                string temp = PlanningRecord[i].GetTimes.ToString();
+                if (temp == "11" || temp == "12" || temp == "13" || temp == "14")
+                    result = temp + " раз в ";
+                else if(temp[temp.Length - 1] == '2' || temp[temp.Length - 1] == '3' || temp[temp.Length - 1] == '4')
+                    result = temp + " раза в ";
+                else result = temp + " раз в ";
+                temp = PlanningRecord[i].GetDays.ToString();
                 if (temp == "1")
-                {
-                    PlanningList.Items[PlanningList.Items.Count - 1].SubItems.Add(PlanningRecord[i].GetTimes.ToString() + " раз в день");
-                }
+                    result += "день";
                 else if (temp == "11" || temp == "12" || temp == "13" || temp == "14")
-                    PlanningList.Items[PlanningList.Items.Count - 1].SubItems.Add(PlanningRecord[i].GetTimes.ToString() + " раз в " + PlanningRecord[i].GetDays.ToString() + " дней");
-                else switch (temp[temp.Length - 1])
+                    result += temp + " дней";
+                else switch(temp[temp.Length - 1])
                     {
                         case '1':
-                            PlanningList.Items[PlanningList.Items.Count - 1].SubItems.Add(PlanningRecord[i].GetTimes.ToString() + " раз в " + PlanningRecord[i].GetDays.ToString() + " день");
+                            result += temp + " день";
                             break;
                         case '2':
-                            PlanningList.Items[PlanningList.Items.Count - 1].SubItems.Add(PlanningRecord[i].GetTimes.ToString() + " раз в " + PlanningRecord[i].GetDays.ToString() + " дня");
+                            result += temp + " дня";
                             break;
                         case '3':
-                            PlanningList.Items[PlanningList.Items.Count - 1].SubItems.Add(PlanningRecord[i].GetTimes.ToString() + " раз в " + PlanningRecord[i].GetDays.ToString() + " дня");
+                            result += temp + " дня";
                             break;
                         case '4':
-                            PlanningList.Items[PlanningList.Items.Count - 1].SubItems.Add(PlanningRecord[i].GetTimes.ToString() + " раз в " + PlanningRecord[i].GetDays.ToString() + " дня");
+                            result += temp + " дня";
                             break;
                         default:
-                            PlanningList.Items[PlanningList.Items.Count - 1].SubItems.Add(PlanningRecord[i].GetTimes.ToString() + " раз в " + PlanningRecord[i].GetDays.ToString() + " дней");
+                            result += temp + " дней";
                             break;
                     }
-
+                PlanningList.Items[PlanningList.Items.Count - 1].SubItems.Add(result);
 
                 PlanningList.Items.Add(PlanningRecord[i].GetComment);
                 PlanningList.Items[PlanningList.Items.Count - 1].Font = new Font("Century Gothic", 10);
@@ -145,6 +150,8 @@ namespace Calculator
 
                 for (int i = PlanningList.Items.Count - 1; i >= 0; i--)
                     PlanningList.Items[i].Remove();
+
+                n = 0;
             }
         }
 

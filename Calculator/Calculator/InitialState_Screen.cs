@@ -16,11 +16,12 @@ namespace Calculator
         public InitialState_Screen()
         {
             InitializeComponent();
+            Today.Text = DateTime.Today.ToShortDateString();
         }
 
         private void Save_Click(object sender, EventArgs e)
         {
-            if (!float.TryParse(Amount.Text, out float a) && a < 0)
+            if (!float.TryParse(Amount.Text, out float a) || a < 0)
             {
                 MessageBox.Show("Введено неверное значение!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return;

@@ -36,8 +36,8 @@ namespace Calculator
                 FileStream fs = File.Create(@"HistoryList.txt");
                 StreamWriter sw = new StreamWriter(fs);
                 sw.WriteLine("0");
-                fs.Close();
                 sw.Close();
+                fs.Close();
                 sr = new StreamReader(@"HistoryList.txt");
             }
 
