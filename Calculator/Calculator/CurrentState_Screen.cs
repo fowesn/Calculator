@@ -71,6 +71,7 @@ namespace Calculator
             HS.Show();
             HS.Location = this.Location;  //чтобы окно открывалось в том же месте, где и окно, с которого совершён переход
             HS.Size = this.Size; //то же для размеров
+            HS.Activate();
             this.Visible = false;
         }
 
@@ -79,7 +80,8 @@ namespace Calculator
             Planning_Screen PS = new Planning_Screen();
             PS.Show();
             PS.Location = this.Location; 
-            PS.Size = this.Size; 
+            PS.Size = this.Size;
+            PS.Activate();
             this.Visible = false;
         }
 
@@ -93,6 +95,7 @@ namespace Calculator
             CSRS.Show();
             CSRS.Location = this.Location;
             CSRS.Size = this.Size;
+            CSRS.Activate();
             this.Visible = false;
         }
 
@@ -106,6 +109,7 @@ namespace Calculator
             CSRS.Show();
             CSRS.Location = this.Location;
             CSRS.Size = this.Size;
+            CSRS.Activate();
             this.Visible = false;
         }
 
@@ -121,6 +125,7 @@ namespace Calculator
             CSRS.Show();
             CSRS.Location = this.Location;
             CSRS.Size = this.Size;
+            CSRS.Activate();
             this.Visible = false;
         }
 

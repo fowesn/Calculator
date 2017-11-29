@@ -33,6 +33,7 @@ namespace Calculator
             CSS.Show();
             CSS.Location = this.Location;
             CSS.Size = this.Size;
+            CSS.Activate();
             this.Visible = false;
         }
 

@@ -86,6 +86,7 @@ namespace Calculator
             CSS.Show();
             CSS.Location = this.Location;
             CSS.Size = this.Size;
+            CSS.Activate();
             this.Visible = false;
         }
 
@@ -104,6 +105,7 @@ namespace Calculator
             HS.Show();
             HS.Location = this.Location;
             HS.Size = this.Size;
+            HS.Activate();
             this.Visible = false;
         }
 
@@ -191,6 +193,7 @@ namespace Calculator
             PS.Show();
             PS.Location = this.Location;
             PS.Size = this.Size;
+            PS.Activate();
             this.Visible = false;
         }
 

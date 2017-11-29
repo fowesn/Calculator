@@ -92,6 +92,7 @@ namespace Calculator
             CSS.Show();
             CSS.Location = this.Location; //чтобы окно открывалось в том же месте, где и окно, с которого совершён переход
             CSS.Size = this.Size; //то же для размеров
+            CSS.Activate();
             this.Visible = false;
         }
 
@@ -101,6 +102,7 @@ namespace Calculator
             PS.Show();
             PS.Location = this.Location;
             PS.Size = this.Size;
+            PS.Activate();
             this.Visible = false;
         }
 
@@ -128,6 +130,7 @@ namespace Calculator
             HRS.Show();
             HRS.Location = this.Location;
             HRS.Size = this.Size;
+            HRS.Activate();
             this.Visible = false;
         }
 
