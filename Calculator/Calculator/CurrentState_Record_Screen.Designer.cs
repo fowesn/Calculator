@@ -212,6 +212,7 @@
             // 
             this.Category.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.Category.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Category.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Category.FormattingEnabled = true;
             this.Category.Location = new System.Drawing.Point(467, 100);
@@ -293,9 +294,9 @@
             this.MinimumSize = new System.Drawing.Size(690, 500);
             this.Name = "CurrentState_Record_Screen";
             this.Text = "Добавить новый пункт";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CurrentState_Record_Screen_Closed);
             this.ResumeLayout(false);
             this.PerformLayout();
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CurrentState_Record_Screen_Closed);
 
         }
 

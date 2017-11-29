@@ -28,19 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
-            "Стипендия",
-            ""}, -1, System.Drawing.Color.Empty, System.Drawing.Color.Empty, new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204))));
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
-            "+5000,00 руб."}, -1, System.Drawing.Color.LimeGreen, System.Drawing.Color.Empty, new System.Drawing.Font("Century Gothic", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204))));
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
-            "Коммент"}, -1, System.Drawing.Color.Empty, System.Drawing.Color.Empty, new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204))));
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
-            "Питание"}, -1, System.Drawing.Color.Empty, System.Drawing.Color.Empty, new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Bold));
-            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem(new string[] {
-            "-500,00 руб."}, -1, System.Drawing.Color.Red, System.Drawing.Color.Empty, new System.Drawing.Font("Century Gothic", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204))));
-            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem(new string[] {
-            "Коммент"}, -1, System.Drawing.Color.Empty, System.Drawing.Color.Empty, new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204))));
             this.SideBarBG = new System.Windows.Forms.Label();
             this.History = new System.Windows.Forms.Label();
             this.Planning = new System.Windows.Forms.Label();
@@ -53,6 +40,7 @@
             this.Subtract = new System.Windows.Forms.Label();
             this.Add = new System.Windows.Forms.Label();
             this.CurrentStateList = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // SideBarBG
@@ -61,6 +49,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SideBarBG.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.SideBarBG.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.SideBarBG.Location = new System.Drawing.Point(0, 0);
             this.SideBarBG.MaximumSize = new System.Drawing.Size(225, 10000);
             this.SideBarBG.MinimumSize = new System.Drawing.Size(225, 472);
@@ -210,22 +199,23 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CurrentStateList.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.CurrentStateList.Font = new System.Drawing.Font("Century Gothic", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CurrentStateList.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3,
-            listViewItem4,
-            listViewItem5,
-            listViewItem6});
+            this.CurrentStateList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1});
+            this.CurrentStateList.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CurrentStateList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.CurrentStateList.Location = new System.Drawing.Point(231, 75);
             this.CurrentStateList.MultiSelect = false;
             this.CurrentStateList.Name = "CurrentStateList";
             this.CurrentStateList.Size = new System.Drawing.Size(545, 397);
             this.CurrentStateList.TabIndex = 14;
             this.CurrentStateList.UseCompatibleStateImageBehavior = false;
-            this.CurrentStateList.View = System.Windows.Forms.View.List;
+            this.CurrentStateList.View = System.Windows.Forms.View.Details;
             this.CurrentStateList.SelectedIndexChanged += new System.EventHandler(this.CurrentStateList_SelectedIndexChanged);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "";
+            this.columnHeader1.Width = 1000;
             // 
             // CurrentState_Screen
             // 
@@ -269,6 +259,7 @@
         private System.Windows.Forms.Label Subtract;
         private System.Windows.Forms.Label Add;
         private System.Windows.Forms.ListView CurrentStateList;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
     }
 }
 

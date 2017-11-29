@@ -13,24 +13,30 @@ namespace Calculator
 {
     public partial class InitialState_Screen : Form
     {
-        public InitialState_Screen(bool war)
+        public InitialState_Screen()
         {
             InitializeComponent();
+            Today.Text = DateTime.Today.ToShortDateString();
         }
 
         private void Save_Click(object sender, EventArgs e)
         {
-            if (!float.TryParse(Amount.Text, out float a))
+            if (!float.TryParse(Amount.Text, out float a) || a < 0)
             {
                 MessageBox.Show("Введено неверное значение!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return;
             }
-            File.WriteAllText(@"CurrentStateList.txt", a.ToString() + '\n' + '0' + '\n');
+            File.WriteAllText(@"CurrentStateList.txt", a.ToString() + "\r\n" + '0' + "\r\n");
             CurrentState_Screen CSS = new CurrentState_Screen();
             CSS.Show();
             CSS.Location = this.Location;
             CSS.Size = this.Size;
             this.Visible = false;
+        }
+
+        private void InitialState_Screen_Closed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

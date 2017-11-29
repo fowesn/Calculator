@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,25 @@ namespace Calculator
 {
     public partial class History_Record_Screen : Form
     {
-        public History_Record_Screen()
+        private int index;
+        public History_Record_Screen(int id)
         {
             InitializeComponent();
+            index = id;
+
+            string[] file = File.ReadAllLines(@"HistoryList.txt");
+            Account.Text = file[0] + " руб.";
+            Today.Text = DateTime.Today.ToShortDateString();
+
+            if (index != -1)
+            {
+                file = file[index + 1].Split(';');
+                Date.Text = file[2];
+                Category.Text = file[3];
+                Amount.Text = file[4];
+                Commentary.Text = file[5];
+                if (Commentary.Text == "0") Commentary.Text = "";
+            }
         }
 
         private void CurrentState_Click(object sender, EventArgs e)
@@ -37,11 +54,7 @@ namespace Calculator
 
         private void Cancel_Click(object sender, EventArgs e)
         {
-            History_Screen HS = new History_Screen();
-            HS.Show();
-            HS.Location = this.Location;
-            HS.Size = this.Size;
-            this.Visible = false;
+            this.Close();
         }
 
         private void History_Record_Screen_Closed(object sender, FormClosedEventArgs e)
