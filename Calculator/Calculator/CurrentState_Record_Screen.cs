@@ -104,16 +104,20 @@ namespace Calculator
             if(Category.Text == "")
             {
                 MessageBox.Show("Укажите категорию", "Не заполнены обязательные поля", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Category.DroppedDown = true;
                 return;
             }
             if (Amount.Text == "")
             {
                 MessageBox.Show("Укажите сумму", "Не заполнены обязательные поля", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Amount.SelectionStart = Amount.Text.Length;
                 return;
             }
             if(!float.TryParse(Amount.Text, out float amount) || amount <= 0)
             {
                 MessageBox.Show("Данные в поле \"Сумма\" введены неверно", "Не заполнены обязательные поля", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Amount.Text = "";
+                Amount.SelectionStart = 0;
                 return;
             }
             string category, commentary;
@@ -153,6 +157,32 @@ namespace Calculator
             CSS.Location = this.Location;
             CSS.Size = this.Size;
             this.Visible = false;
+        }
+
+        private void CurrentState_Record_Screen_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                string text = Amount.Text;
+                if (Amount.Text.Contains("\r\n"))
+                {
+                    text = text.Remove(text.IndexOf("\r\n"), 2);
+                }
+                Amount.Text = text;
+
+                text = Commentary.Text;
+                if (Commentary.Text.Contains("\r\n"))
+                {
+                    text = text.Remove(text.IndexOf("\r\n"), 2);
+                }
+                Commentary.Text = text;
+
+
+                this.Save_Click(sender, e);
+            }
+
+            if (e.KeyCode == Keys.Escape)
+                this.Close();
         }
     }
 }

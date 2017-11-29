@@ -38,5 +38,14 @@ namespace Calculator
         {
             Application.Exit();
         }
+
+        private void InitialState_Screen_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+                this.Save_Click(sender, e);
+
+            if (e.KeyChar == (char)Keys.Escape)
+                this.Close();
+        }
     }
 }

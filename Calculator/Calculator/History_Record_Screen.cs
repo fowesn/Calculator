@@ -65,5 +65,11 @@ namespace Calculator
             HS.Size = this.Size;
             this.Visible = false;
         }
+
+        private void History_Record_Screen_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+                this.Close();
+        }
     }
 }

@@ -78,33 +78,9 @@ namespace Calculator
             return true;
         }
 
-        public bool GetIncrease
-        {
-            get
-            {
-                return this.increase;
-            }
-        }
-        public string GetCategory
-        {
-            get
-            {
-                return this.category;
-            }
-        }
-        public float GetAmount
-        {
-            get
-            {
-                return this.amount;
-            }
-        }
-        public string GetComment
-        {
-            get
-            {
-                return this.commentary;
-            }
-        }
+        public bool GetIncrease => this.increase;
+        public string GetCategory => this.category;
+        public float GetAmount => this.amount;
+        public string GetComment => this.commentary;
     }
 }

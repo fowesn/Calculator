@@ -116,12 +116,14 @@
             this.Controls.Add(this.Request);
             this.Controls.Add(this.Today);
             this.Controls.Add(this.DateBar);
+            this.KeyPreview = true;
             this.MinimumSize = new System.Drawing.Size(690, 500);
             this.Name = "InitialState_Screen";
             this.Text = "Начальное состояние счёта";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.InitialState_Screen_Closed);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.InitialState_Screen_KeyPress);
             this.ResumeLayout(false);
             this.PerformLayout();
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.InitialState_Screen_Closed);
 
         }
 

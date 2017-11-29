@@ -306,11 +306,13 @@
             this.Controls.Add(this.Planning);
             this.Controls.Add(this.History);
             this.Controls.Add(this.SideBarBG);
+            this.KeyPreview = true;
             this.MinimumSize = new System.Drawing.Size(690, 500);
             this.Name = "History_Record_Screen";
             this.Text = "Пункт истории счёта";
-            this.ResumeLayout(false);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.History_Record_Screen_Closed);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.History_Record_Screen_KeyPress);
+            this.ResumeLayout(false);
 
         }
 
