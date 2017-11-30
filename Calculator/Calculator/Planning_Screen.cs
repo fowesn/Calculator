@@ -52,11 +52,20 @@ namespace Calculator
                 PlanningRecord[i] = new Planning_Record();
                 if (!PlanningRecord[i].Read(sr))
                 {
-                    DialogResult Res = MessageBox.Show("Произошла ошибка при загрузке данных. " +
+                    MessageBox.Show("Произошла ошибка при загрузке данных. " +
                         "История планирования счёта будет очищена.", "Ошибка", 
                         MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     sr.Close();
 
+                    StreamWriter sw = new StreamWriter(@"PlanningList.txt", false);
+                    sw.WriteLine("0");
+                    sw.Close();
+
+                    for (int j = PlanningList.Items.Count - 1; i >= 0; i--)
+                        PlanningList.Items[i].Remove();
+
+                    n = 0;
+                    return;
                 }
 
                 PlanningList.Items.Add(PlanningRecord[i].GetCategory);

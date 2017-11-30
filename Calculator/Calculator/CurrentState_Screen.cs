@@ -36,15 +36,13 @@ namespace Calculator
                 CurrentStateRecord[i] = new CurrentState_Record();
                 if(!CurrentStateRecord[i].Read(sr))
                 {
-                    DialogResult Res = MessageBox.Show("Произошла ошибка при загрузке данных. История текущего состояния счёта будет очищена.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    MessageBox.Show("Произошла ошибка при загрузке данных. История текущего состояния счёта будет очищена, приложение перезагружено.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     sr.Close();
-                    Application.ExitThread();
-                    InitialState_Screen ISS = new InitialState_Screen();
-                    ISS.Show();
-                    ISS.Location = this.Location;
-                    ISS.Size = this.Size;
-                    try { Application.Run(ISS); }
-                    catch { new InitialState_Screen().Show(); }
+
+                    StreamWriter sw = new StreamWriter(@"CurrentStateList.txt", false);
+                    sw.Write("");
+                    sw.Close();
+                    Application.Restart();
                 }
 
                 CurrentStateList.Columns[0].Text = DateTime.Today.ToLongDateString();

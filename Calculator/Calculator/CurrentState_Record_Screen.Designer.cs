@@ -295,7 +295,7 @@
             this.MinimumSize = new System.Drawing.Size(690, 500);
             this.Name = "CurrentState_Record_Screen";
             this.Text = "Добавить новый пункт";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CurrentState_Record_Screen_Closed);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CurrentState_Record_Screen_Closing);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.CurrentState_Record_Screen_KeyUp);
             this.ResumeLayout(false);
             this.PerformLayout();

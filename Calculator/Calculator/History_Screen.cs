@@ -48,7 +48,7 @@ namespace Calculator
                 HistoryRecord[i] = new History_Record();
                 if (!HistoryRecord[i].Read(sr))
                 {
-                    DialogResult Res = MessageBox.Show("Произошла ошибка при загрузке данных. История счёта будет очищена.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    MessageBox.Show("Произошла ошибка при загрузке данных. История счёта будет очищена.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     sr.Close();
                     StreamWriter sw = new StreamWriter(@"HistoryList.txt", false);
                     sw.WriteLine("0");
@@ -56,6 +56,9 @@ namespace Calculator
 
                     for (int j = HistoryList.Items.Count - 1; i > 0; i--)
                         HistoryList.Items[j].Remove();
+
+                    n = 0;
+                    return;
                 }
 
                 //HistoryList.Columns[0].Text = DateTime.Today.ToLongDateString();
@@ -127,6 +130,7 @@ namespace Calculator
             }
 
             History_Record_Screen HRS = new History_Record_Screen((index - index % 3) / 3);
+
             HRS.Show();
             HRS.Location = this.Location;
             HRS.Size = this.Size;

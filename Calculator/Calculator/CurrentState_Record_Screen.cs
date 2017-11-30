@@ -122,6 +122,13 @@ namespace Calculator
                 Amount.SelectionStart = 0;
                 return;
             }
+            if(amount > 1000000)
+            {
+                MessageBox.Show("Введено слишком большое значение!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                Amount.Text = "";
+                Amount.SelectionStart = 0;
+                return;
+            }
             string category, commentary;
             category = Category.Text;
             if (Commentary.Text == "") { commentary = "0"; }
@@ -143,8 +150,19 @@ namespace Calculator
             this.Close();
         }
 
-        private void CurrentState_Record_Screen_Closed(object sender, FormClosedEventArgs e)
+        private void CurrentState_Record_Screen_Closing(object sender, FormClosingEventArgs e)
         {
+            if (Category.Text != "" || Amount.Text != "" || Commentary.Text != "")
+            {
+                DialogResult Result = MessageBox.Show("Все несохранённые данные будут потеряны. Продолжить?",
+                    "Предупреждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (Result == DialogResult.No)
+                {
+                    e.Cancel = true;
+                    return;
+                }
+            }
+
             string[] file = File.ReadAllLines(@"CurrentStateList.txt");
             string delete = file[file.Length - 1];
             if (delete[delete.Length - 1] == ';')
@@ -159,7 +177,6 @@ namespace Calculator
             CSS.Location = this.Location;
             CSS.Size = this.Size;
             CSS.Activate();
-            this.Visible = false;
         }
 
         private void CurrentState_Record_Screen_KeyUp(object sender, KeyEventArgs e)

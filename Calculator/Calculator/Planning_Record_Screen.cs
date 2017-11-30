@@ -157,6 +157,14 @@ namespace Calculator
                 return;
             }
 
+            if (amount > 1000000)
+            {
+                MessageBox.Show("Введено слишком большое значение!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                Amount.Text = "";
+                Amount.SelectionStart = 0;
+                return;
+            }
+
             string category, commentary;
             category = Category.Text;
             if (Commentary.Text == "") { commentary = "0"; }
@@ -178,8 +186,18 @@ namespace Calculator
             this.Close();
         }
 
-        private void Planning_Record_Screen_Closed(object sender, FormClosedEventArgs e)
+        private void Planning_Record_Screen_Closing(object sender, FormClosingEventArgs e)
         {
+            if(Category.Text != "" || Days.Text != "" || Times.Text != "" || Amount.Text != "" || Commentary.Text != "")
+            {
+                DialogResult Result = MessageBox.Show("Все несохранённые данные будут потеряны. Продолжить?", 
+                    "Предупреждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (Result == DialogResult.No)
+                {
+                    e.Cancel = true;
+                    return;
+                }
+            } 
             string[] file = File.ReadAllLines(@"PlanningList.txt");
             string delete = file[file.Length - 1];
             if (delete[delete.Length - 1] == ';')
@@ -194,7 +212,6 @@ namespace Calculator
             PS.Location = this.Location;
             PS.Size = this.Size;
             PS.Activate();
-            this.Visible = false;
         }
 
         private void Planning_Record_Screen_KeyUp(object sender, KeyEventArgs e)

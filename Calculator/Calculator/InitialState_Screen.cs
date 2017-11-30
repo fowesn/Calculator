@@ -28,6 +28,13 @@ namespace Calculator
                 Amount.SelectionStart = 0;
                 return;
             }
+            if(a > 10000000)
+            {
+                MessageBox.Show("Введено слишком большое значение!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                Amount.Text = "";
+                Amount.SelectionStart = 0;
+                return;
+            }
             File.WriteAllText(@"CurrentStateList.txt", a.ToString() + "\r\n" + '0' + "\r\n");
             CurrentState_Screen CSS = new CurrentState_Screen();
             CSS.Show();
