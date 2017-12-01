@@ -19,9 +19,10 @@ namespace Calculator
         public Planning_Screen()
         {
             InitializeComponent();
+            StreamReader sr = null;
             try
             {
-                StreamReader sr = new StreamReader(@"CurrentStateList.txt");
+                sr = new StreamReader(@"CurrentStateList.txt");
                 account = float.Parse(sr.ReadLine());
                 sr.Close();
             }
