@@ -36,7 +36,8 @@ namespace Calculator
                 CurrentStateRecord[i] = new CurrentState_Record();
                 if(!CurrentStateRecord[i].Read(sr))
                 {
-                    MessageBox.Show("Произошла ошибка при загрузке данных. История текущего состояния счёта будет очищена, приложение перезагружено.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    MessageBox.Show("Произошла ошибка при загрузке данных. История текущего состояния счёта будет очищена, приложение перезагружено.", 
+                        "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     sr.Close();
 
                     StreamWriter sw = new StreamWriter(@"CurrentStateList.txt", false);

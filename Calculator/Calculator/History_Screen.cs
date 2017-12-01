@@ -19,10 +19,24 @@ namespace Calculator
 
             History_Record Transfer = new History_Record();
             Transfer.Write();
+            float account = 0;
+            StreamReader sr = null;
+            try
+            {
+                sr = new StreamReader(@"CurrentStateList.txt");
+                account = float.Parse(sr.ReadLine());
+                sr.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Произошла ошибка при загрузке данных. История текущего состояния счёта будет очищена, приложение перезагружено.",
+                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Stop);
 
-            StreamReader sr = new StreamReader(@"CurrentStateList.txt");
-            float account = float.Parse(sr.ReadLine());
-            sr.Close();
+                StreamWriter sw = new StreamWriter(@"CurrentStateList.txt", false);
+                sw.Write("");
+                sw.Close();
+                Application.Restart();
+            }
 
             Account.Text = Math.Round(account, 2).ToString() + " руб.";
             Today.Text = DateTime.Today.ToShortDateString();

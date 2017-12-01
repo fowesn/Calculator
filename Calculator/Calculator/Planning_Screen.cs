@@ -19,10 +19,22 @@ namespace Calculator
         public Planning_Screen()
         {
             InitializeComponent();
+            try
+            {
+                StreamReader sr = new StreamReader(@"CurrentStateList.txt");
+                account = float.Parse(sr.ReadLine());
+                sr.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Произошла ошибка при загрузке данных. История текущего состояния счёта будет очищена, приложение перезагружено.",
+                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Stop);
 
-            StreamReader sr = new StreamReader(@"CurrentStateList.txt");
-            account = float.Parse(sr.ReadLine());
-            sr.Close();
+                StreamWriter sw = new StreamWriter(@"CurrentStateList.txt", false);
+                sw.Write("");
+                sw.Close();
+                Application.Restart();
+            }
 
             Today.Text = DateTime.Today.ToShortDateString();
             Account.Text = Math.Round(account, 2).ToString() + " руб.";
@@ -209,7 +221,7 @@ namespace Calculator
              }
             MessageBox.Show("Ваше состояние счёта " + TargetDate.ToLongDateString() + " составит " + 
                             Math.Round(FutureAccount, 2).ToString() + " руб.", 
-                            "Рассчёт до " + TargetDate.ToLongDateString(), 
+                            "Расчёт до " + TargetDate.ToLongDateString(), 
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
