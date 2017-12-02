@@ -29,7 +29,7 @@ namespace Calculator
             }
             catch
             {
-                MessageBox.Show("Произошла ошибка при загрузке данных. История текущего состояния счёта будет очищена, приложение перезагружено.",
+                MessageBox.Show("Произошла ошибка при загрузке данных. Текущее состояние счёта будет очищено, приложение перезагружено.",
                     "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Stop);
 
                 StreamWriter sw = new StreamWriter(@"CurrentStateList.txt", false);
