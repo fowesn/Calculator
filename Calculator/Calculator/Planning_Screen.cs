@@ -212,6 +212,12 @@ namespace Calculator
 
         private void Calculate_Click(object sender, EventArgs e)
         {
+            if(n == 0)
+            {
+                MessageBox.Show("Пожалуйста, создайте хотя бы один пункт доходов или расходов", "Невозможно рассчитать", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
             DateTime TargetDate = Date.Value;
             int days = (TargetDate - DateTime.Today).Days;
             float FutureAccount = account;
