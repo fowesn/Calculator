@@ -67,6 +67,16 @@ namespace Calculator
 
         private void History_Click(object sender, EventArgs e)
         {
+            if (Category.Text != "" || Amount.Text != "" || Commentary.Text != "")
+            {
+                DialogResult Result = MessageBox.Show("Все несохранённые данные будут потеряны. Продолжить?",
+                    "Предупреждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (Result == DialogResult.No)
+                {
+                    //e.Cancel = true;
+                    return;
+                }
+            }
             string[] file = File.ReadAllLines(@"CurrentStateList.txt");
             string delete = file[file.Length - 1];
             if (delete[delete.Length - 1] == ';')
@@ -85,6 +95,16 @@ namespace Calculator
 
         private void Planning_Click(object sender, EventArgs e)
         {
+            if (Category.Text != "" || Amount.Text != "" || Commentary.Text != "")
+            {
+                DialogResult Result = MessageBox.Show("Все несохранённые данные будут потеряны. Продолжить?",
+                    "Предупреждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (Result == DialogResult.No)
+                {
+                    //e.Cancel = true;
+                    return;
+                }
+            }
             string[] file = File.ReadAllLines(@"CurrentStateList.txt");
             string delete = file[file.Length - 1];
             if (delete[delete.Length - 1] == ';')
@@ -112,21 +132,21 @@ namespace Calculator
             if (Amount.Text == "")
             {
                 MessageBox.Show("Укажите сумму", "Не заполнены обязательные поля", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Amount.SelectionStart = Amount.Text.Length;
+                Amount.Focus();
                 return;
             }
             if(!float.TryParse(Amount.Text, out float amount) || amount <= 0)
             {
                 MessageBox.Show("Данные в поле \"Сумма\" введены неверно", "Не заполнены обязательные поля", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Amount.Focus();
                 Amount.Text = "";
-                Amount.SelectionStart = 0;
                 return;
             }
             if(amount > 1000000)
             {
                 MessageBox.Show("Введено слишком большое значение!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                Amount.Focus();
                 Amount.Text = "";
-                Amount.SelectionStart = 0;
                 return;
             }
             string category, commentary;
@@ -147,22 +167,21 @@ namespace Calculator
 
         private void Cancel_Click(object sender, EventArgs e)
         {
-            this.Close();
-        }
-
-        private void CurrentState_Record_Screen_Closing(object sender, FormClosingEventArgs e)
-        {
             if (Category.Text != "" || Amount.Text != "" || Commentary.Text != "")
             {
                 DialogResult Result = MessageBox.Show("Все несохранённые данные будут потеряны. Продолжить?",
                     "Предупреждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (Result == DialogResult.No)
                 {
-                    e.Cancel = true;
+                    //e.Cancel = true;
                     return;
                 }
             }
+            this.Close();
+        }
 
+        private void CurrentState_Record_Screen_Closing(object sender, FormClosingEventArgs e)
+        {
             string[] file = File.ReadAllLines(@"CurrentStateList.txt");
             string delete = file[file.Length - 1];
             if (delete[delete.Length - 1] == ';')
@@ -202,7 +221,19 @@ namespace Calculator
             }
 
             if (e.KeyCode == Keys.Escape)
+            {
+                if (Category.Text != "" || Amount.Text != "" || Commentary.Text != "")
+                {
+                    DialogResult Result = MessageBox.Show("Все несохранённые данные будут потеряны. Продолжить?",
+                        "Предупреждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (Result == DialogResult.No)
+                    {
+                        //e.Cancel = true;
+                        return;
+                    }
+                }
                 this.Close();
+            }
         }
     }
 }

@@ -28,7 +28,7 @@ namespace Calculator
             }
             catch
             {
-                MessageBox.Show("Произошла ошибка при загрузке данных. История текущего состояния счёта будет очищена, приложение перезагружено.",
+                MessageBox.Show("Произошла ошибка при загрузке данных. Текущее состояние счёта будет очищено, приложение перезагружено.",
                     "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Stop);
 
                 StreamWriter sw = new StreamWriter(@"CurrentStateList.txt", false);
@@ -66,7 +66,7 @@ namespace Calculator
                 if (!PlanningRecord[i].Read(sr))
                 {
                     MessageBox.Show("Произошла ошибка при загрузке данных. " +
-                        "История планирования счёта будет очищена.", "Ошибка", 
+                        "Планирование счёта будет очищено.", "Ошибка", 
                         MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     sr.Close();
 
@@ -166,7 +166,7 @@ namespace Calculator
 
         private void Clear_Click(object sender, EventArgs e)
         {
-            DialogResult Result = MessageBox.Show("Вы действительно хотите очистить историю планирования счёта?", "Подтвердите действие", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult Result = MessageBox.Show("Вы действительно хотите очистить планирование счёта?", "Подтвердите действие", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (Result == DialogResult.Yes)
             {
                 StreamWriter sw = new StreamWriter(@"PlanningList.txt", false);
