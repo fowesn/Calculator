@@ -44,6 +44,21 @@ namespace Calculator
             {
                 return true;
             }
+
+            string[] History = null;
+            try
+            {
+                History = File.ReadAllLines(@"HistoryList.txt");
+            }
+            catch
+            {
+                FileStream fs = File.Create(@"HistoryList.txt");
+                StreamWriter sw1 = new StreamWriter(fs);
+                sw1.WriteLine("0");
+                sw1.Close();
+                fs.Close();
+                History = File.ReadAllLines(@"HistoryList.txt");
+            }
             if (!DateTime.TryParse(Record[2], out DateTime CurrentStateDate)) return false;
             
             if(CurrentStateDate < DateTime.Today.Date)
@@ -51,7 +66,7 @@ namespace Calculator
                 int m;
                 if (!int.TryParse(CurrentState[1], out int n)) return false;
                 if (n == 0) return true;
-                string[] History = File.ReadAllLines(@"HistoryList.txt");
+                
                 try { if (!int.TryParse(History[0], out m)) return false; }
                 catch { m = 0; }
 

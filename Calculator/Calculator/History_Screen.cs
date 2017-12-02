@@ -17,8 +17,8 @@ namespace Calculator
         {
             InitializeComponent();
 
-            History_Record Transfer = new History_Record();
-            Transfer.Write();
+           
+
             float account = 0;
             StreamReader sr = null;
             try
@@ -37,6 +37,8 @@ namespace Calculator
                 sw.Close();
                 Application.Restart();
             }
+            History_Record Transfer = new History_Record();
+            Transfer.Write();
 
             Account.Text = Math.Round(account, 2).ToString() + " руб.";
             Today.Text = DateTime.Today.ToShortDateString();
