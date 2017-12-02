@@ -75,7 +75,6 @@ namespace Calculator
                     return;
                 }
 
-                //HistoryList.Columns[0].Text = DateTime.Today.ToLongDateString();
                 if (i != 0 && HistoryRecord[i - 1].GetDate != HistoryRecord[i].GetDate)
                 {
                     HistoryList.Items.Add("  " + HistoryRecord[i].GetDate.ToShortDateString());
