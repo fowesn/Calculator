@@ -73,8 +73,9 @@ namespace Calculator
                     sw.WriteLine("0");
                     sw.Close();
 
-                    for (int j = PlanningList.Items.Count - 1; j >= 0; j--)
-                        PlanningList.Items[j].Remove();
+                    //for (int j = PlanningList.Items.Count - 1; i > 0; i--)
+                    //   PlanningList.Items[i].Remove();
+                    PlanningList.Clear();
                     n = 0;
                     return;
                 }

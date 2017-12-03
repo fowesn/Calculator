@@ -68,9 +68,7 @@ namespace Calculator
                     sw.WriteLine("0");
                     sw.Close();
 
-                    for (int j = HistoryList.Items.Count - 1; j > 0; j--)
-                        HistoryList.Items[j].Remove();
-
+                    HistoryList.Clear();
                     n = 0;
                     return;
                 }
