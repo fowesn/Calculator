@@ -70,7 +70,7 @@ namespace Calculator
                     sw.WriteLine("0");
                     sw.Close();
 
-                    for (int j = HistoryList.Items.Count - 1; i > 0; i--)
+                    for (int j = HistoryList.Items.Count - 1; j > 0; j--)
                         HistoryList.Items[j].Remove();
 
                     n = 0;
