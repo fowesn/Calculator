@@ -17,8 +17,6 @@ namespace Calculator
         {
             InitializeComponent();
 
-           
-
             float account = 0;
             StreamReader sr = null;
             try

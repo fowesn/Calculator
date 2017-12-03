@@ -57,8 +57,7 @@ namespace Calculator
                 sr = new StreamReader(@"PlanningList.txt");
             }
 
-            n = int.Parse(sr.ReadLine());
-
+            if (!int.TryParse(sr.ReadLine(), out int n)) return;
             PlanningRecord = new Planning_Record[n];
             for (int i = 0; i < n; i++)
             {
