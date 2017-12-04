@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Calculator
 {
-    class CurrentState_Record
+    public class CurrentState_Record
     {
         private int id;
         private string category;
@@ -34,17 +34,24 @@ namespace Calculator
             date = d;
             increase = inc;
         }
-        public void Edit(string cat, float am, string com)
+        public bool Edit(string cat, float am, string com)
         {
             category = cat;
             commentary = com == "" ? "0" : com;
-            string[] file = File.ReadAllLines(@"CurrentStateList.txt");
+            if (amount <= 0 || amount > 1000000) return false;
+            try
+            {
+                string[] file = File.ReadAllLines(@"CurrentStateList.txt");
 
-            file[0] = increase ? (float.Parse(file[0]) - amount + am).ToString() : (float.Parse(file[0]) + amount - am).ToString();
+                file[0] = increase ? (float.Parse(file[0]) - amount + am).ToString() : (float.Parse(file[0]) + amount - am).ToString();
 
-            amount = am;
-            file[id + 2] = id.ToString() + ';' + increase.ToString() + ';' + date.ToShortDateString() + ';' + category + ';' + amount.ToString() + ';' + commentary;
-            File.WriteAllLines(@"CurrentStateList.txt", file);
+                amount = am;
+                if (amount <= 0 || amount > 1000000) return false;
+                file[id + 2] = id.ToString() + ';' + increase.ToString() + ';' + date.ToShortDateString() + ';' + category + ';' + amount.ToString() + ';' + commentary;
+                File.WriteAllLines(@"CurrentStateList.txt", file);
+            }
+            catch { return false; }
+            return true;
 
         }
         public bool Read(StreamReader CurrentStateList)
@@ -69,7 +76,8 @@ namespace Calculator
         {
             category = cat;
             amount = am;
-            commentary = com;
+            commentary = com == "" ? "0" : com;
+            if (amount <= 0 || amount > 1000000) return false;
             try
             {
                 string[] file = File.ReadAllLines(@"CurrentStateList.txt");
