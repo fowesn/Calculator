@@ -24,6 +24,15 @@ namespace Calculator
             if (!float.TryParse(Amount.Text, out float a) || a < 0)
             {
                 MessageBox.Show("Введено неверное значение!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                Amount.Text = "";
+                Amount.SelectionStart = 0;
+                return;
+            }
+            if(a > 10000000)
+            {
+                MessageBox.Show("Введено слишком большое значение!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                Amount.Text = "";
+                Amount.SelectionStart = 0;
                 return;
             }
             File.WriteAllText(@"CurrentStateList.txt", a.ToString() + "\r\n" + '0' + "\r\n");
@@ -31,12 +40,31 @@ namespace Calculator
             CSS.Show();
             CSS.Location = this.Location;
             CSS.Size = this.Size;
+            CSS.Activate();
             this.Visible = false;
         }
 
         private void InitialState_Screen_Closed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void InitialState_Screen_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                string text = Amount.Text;
+                if (Amount.Text.Contains("\r\n"))
+                {
+                    text = text.Remove(text.IndexOf("\r\n"), 2);
+                }
+                Amount.Text = text;
+
+                this.Save_Click(sender, e);
+            }
+
+            if (e.KeyChar == (char)Keys.Escape)
+                this.Close();
         }
     }
 }

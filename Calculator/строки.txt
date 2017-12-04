@@ -1,0 +1,32 @@
+строки 
+
+все: 2153
+Program.cs: 61
+
+InitialState_Screen:
+	InitialState_Screen.cs: 70
+	InitialState_Screen.Designer.cs: 139
+
+CurrentState_Record.cs: 86
+CurrentState_Screen:
+	CurrentState_Screen.cs: 143
+	CurrentState_Screen.Designer.cs: 264
+CurrentState_Record_Screen:
+	CurrentState_Record_Screen.cs: 246
+	CurrentState_Record_Screen.Designer.cs: 324
+
+History_Record: 100
+History_Screen:
+	History_Screen.cs: 176
+	History_Screen.Designer.cs: 252
+History_Record_Screen:
+	History_Record_Screen.cs: 75
+	History_Record_Screen.Designer.cs: 339
+
+Planning_Record: 101
+Planning_Screen:
+	Planning_Screen.cs: 248
+	Planning_Screen.Designer.cs: 332
+Planning_Record_Screen:
+	Planning_Record_Screen.cs: 322
+	Planning_Record_Screen.Designer.cs: 394

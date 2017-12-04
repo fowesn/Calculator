@@ -17,12 +17,26 @@ namespace Calculator
         {
             InitializeComponent();
 
+            float account = 0;
+            StreamReader sr = null;
+            try
+            {
+                sr = new StreamReader(@"CurrentStateList.txt");
+                account = float.Parse(sr.ReadLine());
+                sr.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Произошла ошибка при загрузке данных. Текущее состояние счёта будет очищено, приложение перезагружено.",
+                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+
+                StreamWriter sw = new StreamWriter(@"CurrentStateList.txt", false);
+                sw.Write("");
+                sw.Close();
+                Application.Restart();
+            }
             History_Record Transfer = new History_Record();
             Transfer.Write();
-
-            StreamReader sr = new StreamReader(@"CurrentStateList.txt");
-            float account = float.Parse(sr.ReadLine());
-            sr.Close();
 
             Account.Text = Math.Round(account, 2).ToString() + " руб.";
             Today.Text = DateTime.Today.ToShortDateString();
@@ -48,17 +62,17 @@ namespace Calculator
                 HistoryRecord[i] = new History_Record();
                 if (!HistoryRecord[i].Read(sr))
                 {
-                    DialogResult Res = MessageBox.Show("Произошла ошибка при загрузке данных. История счёта будет очищена.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    MessageBox.Show("Произошла ошибка при загрузке данных. История счёта будет очищена.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     sr.Close();
                     StreamWriter sw = new StreamWriter(@"HistoryList.txt", false);
                     sw.WriteLine("0");
                     sw.Close();
 
-                    for (int j = HistoryList.Items.Count - 1; i > 0; i--)
-                        HistoryList.Items[j].Remove();
+                    HistoryList.Clear();
+                    n = 0;
+                    return;
                 }
 
-                //HistoryList.Columns[0].Text = DateTime.Today.ToLongDateString();
                 if (i != 0 && HistoryRecord[i - 1].GetDate != HistoryRecord[i].GetDate)
                 {
                     HistoryList.Items.Add("  " + HistoryRecord[i].GetDate.ToShortDateString());
@@ -92,6 +106,7 @@ namespace Calculator
             CSS.Show();
             CSS.Location = this.Location; //чтобы окно открывалось в том же месте, где и окно, с которого совершён переход
             CSS.Size = this.Size; //то же для размеров
+            CSS.Activate();
             this.Visible = false;
         }
 
@@ -101,6 +116,7 @@ namespace Calculator
             PS.Show();
             PS.Location = this.Location;
             PS.Size = this.Size;
+            PS.Activate();
             this.Visible = false;
         }
 
@@ -125,9 +141,11 @@ namespace Calculator
             }
 
             History_Record_Screen HRS = new History_Record_Screen((index - index % 3) / 3);
+
             HRS.Show();
             HRS.Location = this.Location;
             HRS.Size = this.Size;
+            HRS.Activate();
             this.Visible = false;
         }
 
@@ -140,8 +158,7 @@ namespace Calculator
                 sw.WriteLine("0");
                 sw.Close();
 
-                for (int i = HistoryList.Items.Count - 1; i > 0; i--)
-                    HistoryList.Items[i].Remove();
+                HistoryList.Clear();
             }
         }
 

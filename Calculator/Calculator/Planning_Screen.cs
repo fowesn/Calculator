@@ -19,10 +19,23 @@ namespace Calculator
         public Planning_Screen()
         {
             InitializeComponent();
+            StreamReader sr = null;
+            try
+            {
+                sr = new StreamReader(@"CurrentStateList.txt");
+                account = float.Parse(sr.ReadLine());
+                sr.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Произошла ошибка при загрузке данных. Текущее состояние счёта будет очищено, приложение перезагружено.",
+                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Stop);
 
-            StreamReader sr = new StreamReader(@"CurrentStateList.txt");
-            account = float.Parse(sr.ReadLine());
-            sr.Close();
+                StreamWriter sw = new StreamWriter(@"CurrentStateList.txt", false);
+                sw.Write("");
+                sw.Close();
+                Application.Restart();
+            }
 
             Today.Text = DateTime.Today.ToShortDateString();
             Account.Text = Math.Round(account, 2).ToString() + " руб.";
@@ -44,19 +57,27 @@ namespace Calculator
                 sr = new StreamReader(@"PlanningList.txt");
             }
 
-            n = int.Parse(sr.ReadLine());
-
+            if (!int.TryParse(sr.ReadLine(), out n)) return;
             PlanningRecord = new Planning_Record[n];
             for (int i = 0; i < n; i++)
             {
                 PlanningRecord[i] = new Planning_Record();
                 if (!PlanningRecord[i].Read(sr))
                 {
-                    DialogResult Res = MessageBox.Show("Произошла ошибка при загрузке данных. " +
-                        "История планирования счёта будет очищена.", "Ошибка", 
+                    MessageBox.Show("Произошла ошибка при загрузке данных. " +
+                        "Планирование счёта будет очищено.", "Ошибка", 
                         MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     sr.Close();
 
+                    StreamWriter sw = new StreamWriter(@"PlanningList.txt", false);
+                    sw.WriteLine("0");
+                    sw.Close();
+
+                    //for (int j = PlanningList.Items.Count - 1; i > 0; i--)
+                    //   PlanningList.Items[i].Remove();
+                    PlanningList.Clear();
+                    n = 0;
+                    return;
                 }
 
                 PlanningList.Items.Add(PlanningRecord[i].GetCategory);
@@ -116,6 +137,7 @@ namespace Calculator
             CSS.Show();
             CSS.Location = this.Location; //чтобы окно открывалось в том же месте, где и окно, с которого совершён переход
             CSS.Size = this.Size; //то же для размеров
+            CSS.Activate();
             this.Visible = false;
         }
 
@@ -124,7 +146,8 @@ namespace Calculator
             History_Screen HS = new History_Screen();
             HS.Show();
             HS.Location = this.Location; 
-            HS.Size = this.Size; 
+            HS.Size = this.Size;
+            HS.Activate();
             this.Visible = false;
         }
 
@@ -136,20 +159,20 @@ namespace Calculator
             PRS.Show();
             PRS.Location = this.Location;
             PRS.Size = this.Size;
+            PRS.Activate();
             this.Visible = false;
         }
 
         private void Clear_Click(object sender, EventArgs e)
         {
-            DialogResult Result = MessageBox.Show("Вы действительно хотите очистить историю планирования счёта?", "Подтвердите действие", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult Result = MessageBox.Show("Вы действительно хотите очистить планирование счёта?", "Подтвердите действие", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (Result == DialogResult.Yes)
             {
                 StreamWriter sw = new StreamWriter(@"PlanningList.txt", false);
                 sw.WriteLine("0");
                 sw.Close();
 
-                for (int i = PlanningList.Items.Count - 1; i >= 0; i--)
-                    PlanningList.Items[i].Remove();
+                PlanningList.Clear();
 
                 n = 0;
             }
@@ -166,6 +189,7 @@ namespace Calculator
             PRS.Show();
             PRS.Location = this.Location;
             PRS.Size = this.Size;
+            PRS.Activate();
             this.Visible = false;
         }
 
@@ -180,11 +204,21 @@ namespace Calculator
             PRS.Show();
             PRS.Location = this.Location;
             PRS.Size = this.Size;
+            PRS.Activate();
             this.Visible = false;
         }
 
         private void Calculate_Click(object sender, EventArgs e)
         {
+            StreamReader sr = new StreamReader(@"PlanningList.txt");
+            n = int.Parse(sr.ReadLine());
+            sr.Close();
+            if (n == 0)
+            {
+                MessageBox.Show("Пожалуйста, создайте хотя бы один пункт доходов или расходов", "Невозможно рассчитать", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
             DateTime TargetDate = Date.Value;
             int days = (TargetDate - DateTime.Today).Days;
             float FutureAccount = account;
@@ -195,7 +229,7 @@ namespace Calculator
              }
             MessageBox.Show("Ваше состояние счёта " + TargetDate.ToLongDateString() + " составит " + 
                             Math.Round(FutureAccount, 2).ToString() + " руб.", 
-                            "Рассчёт до " + TargetDate.ToLongDateString(), 
+                            "Расчёт до " + TargetDate.ToLongDateString(), 
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 

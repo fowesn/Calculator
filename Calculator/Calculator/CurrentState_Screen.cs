@@ -36,15 +36,14 @@ namespace Calculator
                 CurrentStateRecord[i] = new CurrentState_Record();
                 if(!CurrentStateRecord[i].Read(sr))
                 {
-                    DialogResult Res = MessageBox.Show("Произошла ошибка при загрузке данных. История текущего состояния счёта будет очищена.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    MessageBox.Show("Произошла ошибка при загрузке данных. Текущее состояние счёта будет очищено, приложение перезагружено.", 
+                        "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     sr.Close();
-                    Application.ExitThread();
-                    InitialState_Screen ISS = new InitialState_Screen();
-                    ISS.Show();
-                    ISS.Location = this.Location;
-                    ISS.Size = this.Size;
-                    try { Application.Run(ISS); }
-                    catch { new InitialState_Screen().Show(); }
+
+                    StreamWriter sw = new StreamWriter(@"CurrentStateList.txt", false);
+                    sw.Write("");
+                    sw.Close();
+                    Application.Restart();
                 }
 
                 CurrentStateList.Columns[0].Text = DateTime.Today.ToLongDateString();
@@ -71,6 +70,7 @@ namespace Calculator
             HS.Show();
             HS.Location = this.Location;  //чтобы окно открывалось в том же месте, где и окно, с которого совершён переход
             HS.Size = this.Size; //то же для размеров
+            HS.Activate();
             this.Visible = false;
         }
 
@@ -79,7 +79,8 @@ namespace Calculator
             Planning_Screen PS = new Planning_Screen();
             PS.Show();
             PS.Location = this.Location; 
-            PS.Size = this.Size; 
+            PS.Size = this.Size;
+            PS.Activate();
             this.Visible = false;
         }
 
@@ -93,6 +94,7 @@ namespace Calculator
             CSRS.Show();
             CSRS.Location = this.Location;
             CSRS.Size = this.Size;
+            CSRS.Activate();
             this.Visible = false;
         }
 
@@ -106,6 +108,7 @@ namespace Calculator
             CSRS.Show();
             CSRS.Location = this.Location;
             CSRS.Size = this.Size;
+            CSRS.Activate();
             this.Visible = false;
         }
 
@@ -121,6 +124,7 @@ namespace Calculator
             CSRS.Show();
             CSRS.Location = this.Location;
             CSRS.Size = this.Size;
+            CSRS.Activate();
             this.Visible = false;
         }
 

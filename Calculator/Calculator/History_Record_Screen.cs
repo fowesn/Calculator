@@ -23,15 +23,13 @@ namespace Calculator
             Account.Text = file[0] + " руб.";
             Today.Text = DateTime.Today.ToShortDateString();
 
-            if (index != -1)
-            {
-                file = file[index + 1].Split(';');
-                Date.Text = file[2];
-                Category.Text = file[3];
-                Amount.Text = file[4];
-                Commentary.Text = file[5];
-                if (Commentary.Text == "0") Commentary.Text = "";
-            }
+            file = file[index + 1].Split(';');
+            Date.Text = file[2];
+            Category.Text = file[3];
+            Amount.Text = file[4];
+            Commentary.Text = file[5];
+            if (Commentary.Text == "0") Commentary.Text = "";
+
         }
 
         private void CurrentState_Click(object sender, EventArgs e)
@@ -40,6 +38,7 @@ namespace Calculator
             CSS.Show();
             CSS.Location = this.Location;
             CSS.Size = this.Size;
+            CSS.Activate();
             this.Visible = false;
         }
 
@@ -49,6 +48,7 @@ namespace Calculator
             PS.Show();
             PS.Location = this.Location;
             PS.Size = this.Size;
+            PS.Activate();
             this.Visible = false;
         }
 
@@ -63,7 +63,13 @@ namespace Calculator
             HS.Show();
             HS.Location = this.Location;
             HS.Size = this.Size;
-            this.Visible = false;
+            HS.Activate();
+        }
+
+        private void History_Record_Screen_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter || e.KeyChar == (char)Keys.Escape)
+                this.Close();
         }
     }
 }

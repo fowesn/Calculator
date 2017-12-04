@@ -9,31 +9,11 @@ namespace Calculator
 {
     class History_Record
     {
-        //private int id;
         private string category;
         private float amount;
         private string commentary;
         private DateTime date;
         private bool increase;
-
-       /* public History_Record()
-        {
-            id = -1;
-            category = "";
-            amount = -1;
-            commentary = "";
-            date = DateTime.Today;
-            increase = false;
-        }
-        public History_Record(int i, string cat, float am, string com, DateTime d, bool inc)
-        {
-            id = i;
-            category = cat;
-            amount = am;
-            commentary = com;
-            date = d;
-            increase = inc;
-        }*/
 
         public bool Read(StreamReader HistoryList)
         {
@@ -64,6 +44,21 @@ namespace Calculator
             {
                 return true;
             }
+
+            string[] History = null;
+            try
+            {
+                History = File.ReadAllLines(@"HistoryList.txt");
+            }
+            catch
+            {
+                FileStream fs = File.Create(@"HistoryList.txt");
+                StreamWriter sw1 = new StreamWriter(fs);
+                sw1.WriteLine("0");
+                sw1.Close();
+                fs.Close();
+                History = File.ReadAllLines(@"HistoryList.txt");
+            }
             if (!DateTime.TryParse(Record[2], out DateTime CurrentStateDate)) return false;
             
             if(CurrentStateDate < DateTime.Today.Date)
@@ -71,7 +66,7 @@ namespace Calculator
                 int m;
                 if (!int.TryParse(CurrentState[1], out int n)) return false;
                 if (n == 0) return true;
-                string[] History = File.ReadAllLines(@"HistoryList.txt");
+                
                 try { if (!int.TryParse(History[0], out m)) return false; }
                 catch { m = 0; }
 
@@ -95,40 +90,11 @@ namespace Calculator
             return true;
         }
 
-        public bool GetIncrease
-        {
-            get
-            {
-                return this.increase;
-            }
-        }
-        public DateTime GetDate
-        {
-            get
-            {
-                return this.date;
-            }
-        }
-        public string GetCategory
-        {
-            get
-            {
-                return this.category;
-            }
-        }
-        public float GetAmount
-        {
-            get
-            {
-                return this.amount;
-            }
-        }
-        public string GetComment
-        {
-            get
-            {
-                return this.commentary;
-            }
-        }
+        public bool GetIncrease => this.increase;
+        public DateTime GetDate => this.date;
+        public string GetCategory => this.category;
+        public float GetAmount => this.amount;
+        public string GetComment => this.commentary;
+
     }
 }

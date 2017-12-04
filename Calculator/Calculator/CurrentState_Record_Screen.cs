@@ -15,6 +15,7 @@ namespace Calculator
     {
         private int index;
         private CurrentState_Record EditRecord = null;
+        private string category, amount, commentary;
         public CurrentState_Record_Screen(int id)
         {
             InitializeComponent();
@@ -28,15 +29,17 @@ namespace Calculator
                 file = file[index + 2].Split(';');
                 if (bool.Parse(file[1]))
                 {
-                    string[] categories = { "Стипендия", "Пенсия", "Долг", "Подарок", "Компенсация", "Подработка" };
+                    string[] categories = { "Стипендия", "Пенсия", "Долг", "Подарок", "Компенсация", "Подработка", "яя" };
                     Array.Sort(categories);
+                    categories[categories.Length - 1] = "Другое";
                     Category.Items.AddRange(categories);
                 }
                 else
                 {
                     string[] categories = { "Питание", "Одежда", "Долг", "Транспорт", "Интернет", "Телефон", "ЖКУ", "Подарки", "Техника",
-                                        "Канцелярия", "Книги", "Бытовая химия", "Ремонт", "Лечение" };
+                                        "Канцелярия", "Книги", "Бытовая химия", "Ремонт", "Лечение", "яя" };
                     Array.Sort(categories);
+                    categories[categories.Length - 1] = "Другое";
                     Category.Items.AddRange(categories);
                 }
                 EditRecord = new CurrentState_Record(int.Parse(file[0]), file[3], float.Parse(file[4]), file[5], DateTime.Parse(file[2]), bool.Parse(file[1]));
@@ -50,23 +53,37 @@ namespace Calculator
                 string[] f = file[file.Length - 1].Split(';');
                 if (bool.Parse(f[1]))
                 {
-                    string[] categories = { "Стипендия", "Пенсия", "Долг", "Подарок", "Компенсация", "Подработка" };
+                    string[] categories = { "Стипендия", "Пенсия", "Долг", "Подарок", "Компенсация", "Подработка", "яя" };
                     Array.Sort(categories);
+                    categories[categories.Length - 1] = "Другое";
                     Category.Items.AddRange(categories);
                 }
                 else
                 {
                     string[] categories = { "Питание", "Одежда", "Долг", "Транспорт", "Интернет", "Телефон", "ЖКУ", "Подарки", "Техника",
-                                        "Канцелярия", "Книги", "Бытовая химия", "Ремонт", "Лечение" };
+                                        "Канцелярия", "Книги", "Бытовая химия", "Ремонт", "Лечение", "яя" };
                     Array.Sort(categories);
+                    categories[categories.Length - 1] = "Другое";
                     Category.Items.AddRange(categories);
                 }
             }
-            Category.Items.Add("Другое");
+            category = Category.Text;
+            amount = Amount.Text;
+            commentary = Commentary.Text;
         }
 
         private void History_Click(object sender, EventArgs e)
         {
+            if (Category.Text != category || Amount.Text != amount || Commentary.Text != commentary)
+            {
+                DialogResult Result = MessageBox.Show("Все несохранённые данные будут потеряны. Продолжить?",
+                    "Предупреждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (Result == DialogResult.No)
+                {
+                    //e.Cancel = true;
+                    return;
+                }
+            }
             string[] file = File.ReadAllLines(@"CurrentStateList.txt");
             string delete = file[file.Length - 1];
             if (delete[delete.Length - 1] == ';')
@@ -79,11 +96,22 @@ namespace Calculator
             HS.Show();
             HS.Location = this.Location;
             HS.Size = this.Size;
+            HS.Activate();
             this.Visible = false;
         }
 
         private void Planning_Click(object sender, EventArgs e)
         {
+            if (Category.Text != category || Amount.Text != amount || Commentary.Text != commentary)
+            {
+                DialogResult Result = MessageBox.Show("Все несохранённые данные будут потеряны. Продолжить?",
+                    "Предупреждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (Result == DialogResult.No)
+                {
+                    //e.Cancel = true;
+                    return;
+                }
+            }
             string[] file = File.ReadAllLines(@"CurrentStateList.txt");
             string delete = file[file.Length - 1];
             if (delete[delete.Length - 1] == ';')
@@ -96,6 +124,7 @@ namespace Calculator
             PS.Show();
             PS.Location = this.Location;
             PS.Size = this.Size;
+            PS.Activate();
             this.Visible = false;
         }
 
@@ -104,16 +133,27 @@ namespace Calculator
             if(Category.Text == "")
             {
                 MessageBox.Show("Укажите категорию", "Не заполнены обязательные поля", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Category.DroppedDown = true;
                 return;
             }
             if (Amount.Text == "")
             {
                 MessageBox.Show("Укажите сумму", "Не заполнены обязательные поля", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Amount.Focus();
                 return;
             }
             if(!float.TryParse(Amount.Text, out float amount) || amount <= 0)
             {
                 MessageBox.Show("Данные в поле \"Сумма\" введены неверно", "Не заполнены обязательные поля", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Amount.Focus();
+                Amount.Text = "";
+                return;
+            }
+            if(amount > 1000000)
+            {
+                MessageBox.Show("Введено слишком большое значение!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                Amount.Focus();
+                Amount.Text = "";
                 return;
             }
             string category, commentary;
@@ -134,10 +174,20 @@ namespace Calculator
 
         private void Cancel_Click(object sender, EventArgs e)
         {
+            if (Category.Text != category || Amount.Text != amount || Commentary.Text != commentary)
+            {
+                DialogResult Result = MessageBox.Show("Все несохранённые данные будут потеряны. Продолжить?",
+                    "Предупреждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (Result == DialogResult.No)
+                {
+                    //e.Cancel = true;
+                    return;
+                }
+            }
             this.Close();
         }
 
-        private void CurrentState_Record_Screen_Closed(object sender, FormClosedEventArgs e)
+        private void CurrentState_Record_Screen_Closing(object sender, FormClosingEventArgs e)
         {
             string[] file = File.ReadAllLines(@"CurrentStateList.txt");
             string delete = file[file.Length - 1];
@@ -152,7 +202,45 @@ namespace Calculator
             CSS.Show();
             CSS.Location = this.Location;
             CSS.Size = this.Size;
-            this.Visible = false;
+            CSS.Activate();
+        }
+
+        private void CurrentState_Record_Screen_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                string text = Amount.Text;
+                if (Amount.Text.Contains("\r\n"))
+                {
+                    text = text.Remove(text.IndexOf("\r\n"), 2);
+                }
+                Amount.Text = text;
+
+                text = Commentary.Text;
+                if (Commentary.Text.Contains("\r\n"))
+                {
+                    text = text.Remove(text.IndexOf("\r\n"), 2);
+                }
+                Commentary.Text = text;
+
+
+                this.Save_Click(sender, e);
+            }
+
+            if (e.KeyCode == Keys.Escape)
+            {
+                if (Category.Text != category || Amount.Text != amount || Commentary.Text != commentary)
+                {
+                    DialogResult Result = MessageBox.Show("Все несохранённые данные будут потеряны. Продолжить?",
+                        "Предупреждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (Result == DialogResult.No)
+                    {
+                        //e.Cancel = true;
+                        return;
+                    }
+                }
+                this.Close();
+            }
         }
     }
 }
