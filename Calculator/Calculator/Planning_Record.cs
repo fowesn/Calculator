@@ -84,10 +84,15 @@ namespace Calculator
             commentary = com;
             frequency.times = times;
             frequency.days = days;
-            string[] file = File.ReadAllLines(@"PlanningList.txt");
-            file[0] = (int.Parse(file[0]) + 1).ToString();
-            file[file.Length - 1] += category + ";" + frequency.times.ToString() + ';' + frequency.days.ToString() + ';' + amount.ToString() + ";" + commentary;
-            File.WriteAllLines(@"PlanningList.txt", file);
+            try
+            {
+                string[] file = File.ReadAllLines(@"PlanningList.txt");
+                if (!int.TryParse(file[0], out int n)) return false;
+                file[0] = (n + 1).ToString();
+                file[file.Length - 1] += category + ";" + frequency.times.ToString() + ';' + frequency.days.ToString() + ';' + amount.ToString() + ";" + commentary;
+                File.WriteAllLines(@"PlanningList.txt", file);
+            }
+            catch { return false; }
             return true;
         }
 

@@ -70,11 +70,18 @@ namespace Calculator
             category = cat;
             amount = am;
             commentary = com;
-            string[] file = File.ReadAllLines(@"CurrentStateList.txt");
-            file[1] = (int.Parse(file[1]) + 1).ToString();
-            file[file.Length - 1] += category + ";" + amount.ToString() + ";" + commentary;
-            file[0] = bool.Parse(file[file.Length - 1].Split(';')[1]) ? (float.Parse(file[0]) + amount).ToString() : (float.Parse(file[0]) - amount).ToString();
-            File.WriteAllLines(@"CurrentStateList.txt", file);
+            try
+            {
+                string[] file = File.ReadAllLines(@"CurrentStateList.txt");
+                if (file == null) return false;
+                if (!int.TryParse(file[1], out int n)) return false;
+                file[1] = (n + 1).ToString();
+                file[file.Length - 1] += category + ";" + amount.ToString() + ";" + commentary;
+                if (!float.TryParse(file[0], out float account)) return false;
+                file[0] = bool.Parse(file[file.Length - 1].Split(';')[1]) ? (account + amount).ToString() : (account - amount).ToString();
+                File.WriteAllLines(@"CurrentStateList.txt", file);
+            }
+            catch { return false; }
             return true;
         }
 
