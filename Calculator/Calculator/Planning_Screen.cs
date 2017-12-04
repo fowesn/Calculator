@@ -57,7 +57,7 @@ namespace Calculator
                 sr = new StreamReader(@"PlanningList.txt");
             }
 
-            if (!int.TryParse(sr.ReadLine(), out int n)) return;
+            if (!int.TryParse(sr.ReadLine(), out n)) return;
             PlanningRecord = new Planning_Record[n];
             for (int i = 0; i < n; i++)
             {
@@ -210,7 +210,10 @@ namespace Calculator
 
         private void Calculate_Click(object sender, EventArgs e)
         {
-            if(n == 0)
+            StreamReader sr = new StreamReader(@"PlanningList.txt");
+            n = int.Parse(sr.ReadLine());
+            sr.Close();
+            if (n == 0)
             {
                 MessageBox.Show("Пожалуйста, создайте хотя бы один пункт доходов или расходов", "Невозможно рассчитать", 
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);

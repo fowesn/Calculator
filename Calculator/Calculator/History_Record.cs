@@ -95,5 +95,6 @@ namespace Calculator
         public string GetCategory => this.category;
         public float GetAmount => this.amount;
         public string GetComment => this.commentary;
+
     }
 }
