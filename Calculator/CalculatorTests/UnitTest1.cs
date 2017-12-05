@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Calculator;
 using System.IO;
+using Calculator;
 
 namespace CalculatorTests
 {
@@ -156,9 +156,206 @@ namespace CalculatorTests
     [TestClass]
     public class Planning_Record_Tests
     {
+        // попытка записи в файл, когда times == -1
         [TestMethod]
-        public void Test()
+        public void Write_Negative_1()
         {
+            // входные данные
+            Planning_Record PR = new Planning_Record();
+            Frequency FR = new Frequency(-1, 1);
+            string cat = "Подарок";
+            float am = 100;
+            string com = "От друзей";
+            bool expected = false;
+
+            // получение результата с помощью тестируемой функции
+            bool actual = PR.Write(cat, am, com, FR.times, FR.days);
+
+            // проверка совпадения ожидаемого и полученного значений
+            Assert.AreEqual(expected, actual);
+        }
+
+        // попытка записи в файл, когда times == 1000001
+        [TestMethod]
+        public void Write_Negative_2()
+        {
+            // входные данные
+            Planning_Record PR = new Planning_Record();
+            Frequency FR = new Frequency(1000001, 1);
+            string cat = "Подарок";
+            float am = 100;
+            string com = "От друзей";
+            bool expected = false;
+
+            // получение результата с помощью тестируемой функции
+            bool actual = PR.Write(cat, am, com, FR.times, FR.days);
+
+            // проверка совпадения ожидаемого и полученного значений
+            Assert.AreEqual(expected, actual);
+        }
+
+        // попытка записи в файл, когда days == 0
+        [TestMethod]
+        public void Write_Edge_1()
+        {
+            // входные данные
+            Planning_Record PR = new Planning_Record();
+            Frequency FR = new Frequency(1, 0);
+            string cat = "Подарок";
+            float am = 100;
+            string com = "От друзей";
+            bool expected = true;
+
+            // получение результата с помощью тестируемой функции
+            bool actual = PR.Write(cat, am, com, FR.times, FR.days);
+
+            // проверка совпадения ожидаемого и полученного значений
+            Assert.AreEqual(expected, actual);
+        }
+
+        // попытка записи в файл, когда days == 1000
+        [TestMethod]
+        public void Write_Edge_2()
+        {
+            // входные данные
+            Planning_Record PR = new Planning_Record();
+            Frequency FR = new Frequency(1, 1000);
+            string cat = "Подарок";
+            float am = 100;
+            string com = "От друзей";
+            bool expected = true;
+
+            // получение результата с помощью тестируемой функции
+            bool actual = PR.Write(cat, am, com, FR.times, FR.days);
+
+            // проверка совпадения ожидаемого и полученного значений
+            Assert.AreEqual(expected, actual);
+        }
+
+        // попытка записи в файл, когда days == 1001
+        [TestMethod]
+        public void Edit_Negative_1()
+        {
+            // входные данные
+            Frequency FR = new Frequency(1, 1001);
+            Planning_Record PR = new Planning_Record(1, "ЖКУ", 1000, "", FR, false);
+            string cat = "Транспорт";
+            float am = 100;
+            string com = "Проездной";
+            bool expected = false;
+
+            // получение результата с помощью тестируемой функции
+            bool actual = PR.Edit(cat, am, com, FR.times, FR.days);
+
+            // проверка совпадения ожидаемого и полученного значений
+            Assert.AreEqual(expected, actual);
+        }
+
+        // попытка записи в файл, когда days == -1
+        [TestMethod]
+        public void Edit_Negative_2()
+        {
+            // входные данные
+            Frequency FR = new Frequency(1, -1);
+            Planning_Record PR = new Planning_Record(1, "ЖКУ", 1000, "", FR, false);
+            string cat = "Транспорт";
+            float am = 100;
+            string com = "Проездной";
+            bool expected = false;
+
+            // получение результата с помощью тестируемой функции
+            bool actual = PR.Edit(cat, am, com, FR.times, FR.days);
+
+            // проверка совпадения ожидаемого и полученного значений
+            Assert.AreEqual(expected, actual);
+        }
+
+        // попытка записи в файл, когда файл удален
+        [TestMethod]
+        public void Edit_Negative_3()
+        {
+            // входные данные
+            Planning_Record PR = new Planning_Record();
+            Frequency FR = new Frequency(1, -1);
+            string cat = "Транспорт";
+            float am = 100;
+            string com = "Проездной";
+            bool expected = false;
+            // удаление файла
+            File.Delete(@"PlanningList.txt");
+
+            // получение результата с помощью тестируемой функции
+            bool actual = PR.Edit(cat, am, com, FR.times, FR.days);
+
+            // проверка совпадения ожидаемого и полученного значений
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Edit_Positive()
+        {
+            // входные данные
+            Frequency FR = new Frequency(5, 7);
+            Planning_Record PR = new Planning_Record(1, "ЖКУ", 1000, "", FR, false);
+            string cat = "Транспорт";
+            float am = 100;
+            string com = "Проездной";
+            bool expected = true;
+            Frequency FR_ = new Frequency(6, 4);
+
+            // получение результата с помощью тестируемой функции
+            bool actual = PR.Edit(cat, am, com, FR.times, FR.days);
+
+            // проверка совпадения ожидаемого и полученного значений
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Read_Negative()
+        {
+            // входные данные
+            Planning_Record PR = new Planning_Record();
+            StreamReader sr = null;
+            try
+            {
+                sr = new StreamReader(@"PlanningList.txt");
+            }
+
+            catch
+            {
+                Assert.Fail();
+            }
+            bool expected = false;
+
+            // получение результата с помощью тестируемой функции
+            bool actual = PR.Read(sr);
+
+            // проверка совпадения ожидаемого и полученного значений
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Read_Positive()
+        {
+            // входные данные
+            Planning_Record PR = new Planning_Record();
+            StreamReader sr = null;
+            try
+            {
+                sr = new StreamReader(@"PlanningList.txt");
+            }
+
+            catch
+            {
+                Assert.Fail();
+            }
+            bool expected = true;
+
+            // получение результата с помощью тестируемой функции
+            bool actual = PR.Read(sr);
+
+            // проверка совпадения ожидаемого и полученного значений
+            Assert.AreEqual(expected, actual);
         }
     }
 }
