@@ -296,7 +296,7 @@ namespace CalculatorTests
         {
             // входные данные
             Frequency FR = new Frequency(5, 7);
-            Planning_Record PR = new Planning_Record(1, "ЖКУ", 1000, "", FR, false);
+            Planning_Record PR = new Planning_Record(1, "ЖКУ", 1000, "ytyt", FR, false);
             string cat = "Транспорт";
             float am = 100;
             string com = "Проездной";
@@ -304,7 +304,7 @@ namespace CalculatorTests
             Frequency FR_ = new Frequency(6, 4);
 
             // получение результата с помощью тестируемой функции
-            bool actual = PR.Edit(cat, am, com, FR.times, FR.days);
+            bool actual = PR.Edit(cat, am, com, FR_.times, FR_.days);
 
             // проверка совпадения ожидаемого и полученного значений
             Assert.AreEqual(expected, actual);
@@ -323,7 +323,7 @@ namespace CalculatorTests
 
             catch
             {
-                Assert.Fail();
+                //Assert.Fail();
             }
             bool expected = false;
 
@@ -349,6 +349,8 @@ namespace CalculatorTests
             {
                 Assert.Fail();
             }
+
+            sr.ReadLine();
             bool expected = true;
 
             // получение результата с помощью тестируемой функции

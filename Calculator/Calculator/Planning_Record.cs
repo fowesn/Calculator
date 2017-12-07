@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Calculator
 {
+    
     public struct Frequency
     {
         public int times;
@@ -25,6 +26,9 @@ namespace Calculator
         private string commentary;
         private bool increase;
         private Frequency frequency;
+
+        CurrentState_Screen y = new CurrentState_Screen();
+        
 
         public Planning_Record()
         {
@@ -61,7 +65,7 @@ namespace Calculator
                 return false;
             }
 
-            if ((amount < 0) || (amount > 1000))
+            if ((amount < 0) || (amount > 1000000))
             {
                 return false;
             }
